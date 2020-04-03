@@ -5,8 +5,8 @@ docs: https://github.com/KalitaKonrad/SDSZ-Obwodnica-lll/blob/docs/docs/Symulacj
 
 Plan projektu:
 
-1. Sformułowanie problemu. 
-2. Analiza dostępnych rozwiązań.
-3. Budowa algorytmu i modelu matematycznego. 
-4. Implementacja w języku Java.
-5. Analiza i ocena poprawności wyników.
+[x] Sformułowanie problemu. 
+[x] Analiza dostępnych rozwiązań.
+[ ] Budowa algorytmu i modelu matematycznego. 
+[ ] Implementacja w języku Java.
+[ ] Analiza i ocena poprawności wyników.
