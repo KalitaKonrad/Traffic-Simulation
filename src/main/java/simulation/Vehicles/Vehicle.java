@@ -5,7 +5,7 @@ package simulation.Vehicles;
 *   @version: 1.0
 *   @since: 04.04.2020
 */
-abstract class Vehicle {
+public abstract class Vehicle {
     /**
      * Vehicle abstract class for Nagel-Schreckenberg model.
      *
@@ -29,7 +29,7 @@ abstract class Vehicle {
 
     double brakeProbability;
 
-    static final int MAX_VELOCITY = 10;
+    static final int MAX_VELOCITY = 20;
     static final int ACCELERATION = 1;
     static final double BRAKE_PROBABILITY = 0.05;
 
@@ -90,5 +90,24 @@ abstract class Vehicle {
      */
     public abstract String toString();
 
+    /**
+     * @return int current x-position of the Vehicle.
+     */
+    public int getX() {
+        return x;
+    }
 
+    /**
+     * @return int current x-position of the Vehicle.
+     */
+    public int getY() {
+        return y;
+    }
+
+    /**
+     * @return int current velocity of the Vehicle.
+     */
+    public int getVelocity() {
+        return velocity;
+    }
 }

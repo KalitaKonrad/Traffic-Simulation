@@ -3,16 +3,21 @@ package simulation;
 
 import simulation.Vehicles.Car;
 
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
-        Car car = new Car(0,0);
+        Road road = new Road(100, 2, 15);
 
-        car.update();
-        car.update();
-        car.update();
-        car.update();
-
-        System.out.println(car);
+        Scanner sc= new Scanner(System.in);
+        while(true) {
+          int decision = sc.nextInt();
+          if (decision == 1){
+              road.addCar();
+          }
+          road.update();
+          System.out.println(road.toString());
+        }
     }
 }
