@@ -6,8 +6,20 @@ package simulation.Vehicles;
  */
 public class Car extends Vehicle{
     /**
-     * Car class  for Nagel-Schreckenberg model extending Vehicle abtract class.
+     * Car class  for Nagel-Schreckenberg model extending Vehicle abstract class.
      *
+     *
+     * @param x                             This is a current Vehicle position in x-axis
+     * @param y                             Current road lane of the road occupied by the Vehicle
+     * @param velocity                      Current velocity of the Vehicle
+     *
+     * @param brakeProbability              is the Probability iof breaking  by the Vehicle.
+     *
+     * @param maxVelocity                   Constant speed limit for the Vehicle.
+     * @param acceleration                  Constant acceleration value for the Vehicle.
+     * @param distanceToForwardingVehicle   Distance to forwarding Vehicle on the road.
+     *
+     * @see                                 https://en.wikipedia.org/wiki/Nagel%E2%80%93Schreckenberg_model
      */
 
     public Car(int x, int y) {

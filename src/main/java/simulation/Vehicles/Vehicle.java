@@ -9,16 +9,18 @@ public abstract class Vehicle {
     /**
      * Vehicle abstract class for Nagel-Schreckenberg model.
      *
-     * @param x This is a current Vehicle position in x-axis
-     * @param y Current road lane of the road occupied by the Vehicle
-     * @param velocity Current velocity of the Vehicle
      *
-     * @param brakeProbability is the Probability iof breaking  by the Vehicle.
+     * @param x                             This is a current Vehicle position in x-axis
+     * @param y                             Current road lane of the road occupied by the Vehicle
+     * @param velocity                      Current velocity of the Vehicle
      *
-     * @param maxVelocity Constant speed limit for the Vehicle.
-     * @param acceleration Constant acceleration value for the Vehicle.
-     * @param distanceToForwardingVehicle Distance to forwarding Vehicle on the road.
+     * @param brakeProbability              is the Probability iof breaking  by the Vehicle.
      *
+     * @param maxVelocity                   Constant speed limit for the Vehicle.
+     * @param acceleration                  Constant acceleration value for the Vehicle.
+     * @param distanceToForwardingVehicle   Distance to forwarding Vehicle on the road.
+     *
+     * @see                                 https://en.wikipedia.org/wiki/Nagel%E2%80%93Schreckenberg_model
      */
 
     int x;
@@ -54,7 +56,7 @@ public abstract class Vehicle {
     }
 
     /**
-     * @method update is used to update Vehicle's velocity and position.
+     * update method is used to update Vehicle's velocity and position.
      *
      * @return void
      */
@@ -66,7 +68,7 @@ public abstract class Vehicle {
     }
 
     /**
-     * @method accelerate is used to accelerate Vehicle.
+     *  accelerate method is used to accelerate Vehicle.
      *
      * @return void
      */
@@ -76,7 +78,7 @@ public abstract class Vehicle {
     }
 
     /**
-     * @method accelerate is used to slow down Vehicle.
+     * brake method is used to slow down Vehicle.
      *
      * @return void
      */
@@ -87,9 +89,9 @@ public abstract class Vehicle {
     }
 
     /**
-     * @method toString is used to get string representation of the Vehicle object.
+     * toString is used to get string representation of the Vehicle object.
      *
-     * @return String
+     * @return String representation of Vehicle object.
      */
     public abstract String toString();
 
@@ -114,14 +116,18 @@ public abstract class Vehicle {
         return velocity;
     }
 
+    /**
+     * @return int distance from current vehicle to the next vehicle in the same lane.
+     */
     public int getDistanceToForwardingVehicle() {
         return distanceToForwardingVehicle;
     }
 
-    public void setVelocity(int velocity) {
-        this.velocity = velocity;
-    }
-
+    /**
+     * Method is used to set the distance to forwarding vehicle in the same lane.
+     *
+     * @param distanceToForwardingVehicle
+     */
     public void setDistanceToForwardingVehicle(int distanceToForwardingVehicle) {
         this.distanceToForwardingVehicle = distanceToForwardingVehicle;
     }

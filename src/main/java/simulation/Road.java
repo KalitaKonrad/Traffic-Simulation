@@ -6,7 +6,6 @@ import simulation.Vehicles.Vehicle;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 /*
@@ -20,11 +19,14 @@ public class Road {
      * @param length        This is the total length of the road.
      * @param n_lanes       Number of the lanes in the road.
      *
-     * @param road          Road Array is the representation of the entire road.
-     * @param vehicles      All the vehicles on the entire road.
+     * @param road          Array which is the representation of the entire road
+     *                      (we are using road array only to represent Road object,
+     *                      all operations are performed on vehicles List).
+     * @param vehicles      List of the Vehicles objects on the entire road.
      *
      * @param speedLimit    Speed Limit, max velocity on the entire road.
      *
+     * @see                 https://en.wikipedia.org/wiki/Nagel%E2%80%93Schreckenberg_model
      */
 
     int length;
@@ -49,7 +51,8 @@ public class Road {
     }
 
     /**
-     * @method getEmptyRoadArray
+     * getEmptyRoadArray returns empty road array (dimensions: n_lanes x length).
+     *
      * @return Vehicle[][] the 2D array of vehicles states on the road.
      */
     private Vehicle[][] getEmptyRoadArray() {
@@ -57,12 +60,12 @@ public class Road {
     }
 
     /**
-     * @method toString returns string representation of the road.
-     * @return String
+     * toString returns string representation of the road.
+     *
+     * @return String Road representation.
      */
     public String toString() {
         String result = "";
-        int counter = 0;
         for(int i=0; i < this.n_lanes; i++){
             for(int j=0; j < this.length; j++){
                 if(road[i][j] != null) {
@@ -70,7 +73,6 @@ public class Road {
                 } else {
                     result += "  -  ";
                 }
-                counter++;
             }
             result += "\n";
         }
@@ -78,8 +80,12 @@ public class Road {
     }
 
     /**
-     * @method update is the method to update all vehicle states.
+     *  update is the method to update all vehicle states
+     *  and calculate its collisions.
+     *
      * @return void
+     *
+     * @see Vehicles.Vehicle.update method.
      */
     public void update() {
         this.road = this.getEmptyRoadArray();
@@ -101,9 +107,9 @@ public class Road {
     }
 
     /**
-     * @method checkCollisions check the distance between vehicles/ end of the road
-     *          and sets this value into DistanceToForwardingVehicle,
-     *          then vehicle sets the right value of velocity.
+     * checkCollisions check the distance between vehicles/ end of the road
+     * and sets this value into DistanceToForwardingVehicle,
+     * then vehicle sets the right value of velocity.
      *
      * @return void
      */
@@ -128,7 +134,7 @@ public class Road {
     }
 
     /**
-     * @method addCar adding Car on chosen lane on the road.
+     * addCar adding Car on chosen lane on the road.
      *
      * @param lane is the lane index on the road (y-axis).
      * @return void
