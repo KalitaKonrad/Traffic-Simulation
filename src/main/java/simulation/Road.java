@@ -7,6 +7,7 @@ import simulation.Vehicles.Vehicle;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 /*
  *   @version: 1.0
@@ -52,7 +53,7 @@ public class Road {
      * @return Vehicle[][] the 2D array of vehicles states on the road.
      */
     private Vehicle[][] getEmptyRoadArray() {
-        return new Vehicle[this.length][this.n_lanes];
+        return new Vehicle[this.n_lanes][this.length];
     }
 
     /**
@@ -62,18 +63,16 @@ public class Road {
     public String toString() {
         String result = "";
         int counter = 0;
-        for(int i=0; i < this.length; i++){
-            for(int j=0; j < this.n_lanes; j++){
+        for(int i=0; i < this.n_lanes; i++){
+            for(int j=0; j < this.length; j++){
                 if(road[i][j] != null) {
-                    result += road[i][j].getVelocity();
+                    result += "(" +  road[i][j].getVelocity() + ", " + road[i][j].getDistanceToForwardingVehicle() + ")";
                 } else {
-                    result += "-";
+                    result += "  -  ";
                 }
                 counter++;
             }
-            if (counter % this.length == 0){
-                result += "\n";
-            }
+            result += "\n";
         }
         return result;
     }
@@ -84,26 +83,59 @@ public class Road {
      */
     public void update() {
         this.road = this.getEmptyRoadArray();
+        this.checkCollisions();
 
         for(Vehicle vehicle: vehicles){
-            int prev_x = vehicle.getX();
-            int prev_y = vehicle.getY();
+            vehicle.update();
 
-            if(prev_x >= 0 && prev_x < this.length){
-                vehicle.update();
-                int new_x = vehicle.getX();
-                int new_y = vehicle.getY();
+            int new_x = vehicle.getX();
+            int new_y = vehicle.getY();
 
-                this.road[new_x][new_y] = vehicle; // nie mozna dodac pojadu gdy jest poza tablica
+            if (new_x >= this.length) {
+                vehicles.remove(vehicle);
+            } else {
+                this.road[new_y][new_x] = vehicle;  // nie mozna dodac pojadu gdy jest poza tablica
                                                     // ale tutaj bedzie hamowanie przed koncem wiec do ogarniecia
             }
         }
     }
 
-    public void addCar() {
-        Random r = new Random();
+    /**
+     * @method checkCollisions check the distance between vehicles/ end of the road
+     *          and sets this value into DistanceToForwardingVehicle,
+     *          then vehicle sets the right value of velocity.
+     *
+     * @return void
+     */
+    public void checkCollisions() {
+        for(Vehicle vehicle: vehicles) {
+            int g = this.length - vehicle.getX() - 1;
+
+            List<Vehicle> otherVehiclesOnSameLane = vehicles.stream().
+                    filter(v -> v.getY() == vehicle.getY()).
+                    filter(v -> v.getX() > vehicle.getX()).
+                    collect(Collectors.toList());
+            System.out.println(vehicle.toString() + " >>> " + otherVehiclesOnSameLane.toString());
+
+            for(Vehicle other: otherVehiclesOnSameLane) {
+                int distance = other.getX() - vehicle.getX();
+                if (distance < g) {
+                    g = distance;
+                }
+            }
+            vehicle.setDistanceToForwardingVehicle(g);
+        }
+    }
+
+    /**
+     * @method addCar adding Car on chosen lane on the road.
+     *
+     * @param lane is the lane index on the road (y-axis).
+     * @return void
+     */
+    public void addCar(int lane) {
         this.vehicles.add(
-                new Car(0,r.nextInt(this.n_lanes), 0, this.speedLimit, 1, 0.1)
+                new Car(0,lane, 0, this.speedLimit, 1, 0.1)
         );
     }
 }

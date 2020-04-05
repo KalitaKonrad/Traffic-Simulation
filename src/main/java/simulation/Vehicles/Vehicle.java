@@ -17,6 +17,7 @@ public abstract class Vehicle {
      *
      * @param maxVelocity Constant speed limit for the Vehicle.
      * @param acceleration Constant acceleration value for the Vehicle.
+     * @param distanceToForwardingVehicle Distance to forwarding Vehicle on the road.
      *
      */
 
@@ -26,6 +27,7 @@ public abstract class Vehicle {
 
     int maxVelocity;
     int acceleration;
+    int distanceToForwardingVehicle;
 
     double brakeProbability;
 
@@ -70,6 +72,7 @@ public abstract class Vehicle {
      */
     public void accelerate() {
         this.velocity = Math.min(this.velocity + this.acceleration, this.maxVelocity);
+        this.velocity = Math.min(this.velocity, this.distanceToForwardingVehicle - 1);
     }
 
     /**
@@ -109,5 +112,17 @@ public abstract class Vehicle {
      */
     public int getVelocity() {
         return velocity;
+    }
+
+    public int getDistanceToForwardingVehicle() {
+        return distanceToForwardingVehicle;
+    }
+
+    public void setVelocity(int velocity) {
+        this.velocity = velocity;
+    }
+
+    public void setDistanceToForwardingVehicle(int distanceToForwardingVehicle) {
+        this.distanceToForwardingVehicle = distanceToForwardingVehicle;
     }
 }

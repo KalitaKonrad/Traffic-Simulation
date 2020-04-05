@@ -24,6 +24,6 @@ public class Car extends Vehicle{
 
     @Override
     public String toString() {
-        return "<Car pos=(" + this.x + ", " + this.y + ") >";
+        return "<Car pos=(" + this.x + ", " + this.y + ") dist="+ this.distanceToForwardingVehicle + ">";
     }
 }
