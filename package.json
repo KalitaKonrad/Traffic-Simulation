@@ -1,0 +1,38 @@
+{
+  "name": "sdsz-obwodnica-lll",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Vehicles.js",
+  "scripts": {
+    "test": "jest",
+    "serve": "parcel public/*.html",
+    "build": "parcel build public/*.html",
+    "lint": "yarn prettier --write src/**/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KalitaKonrad/SDSZ-Obwodnica-lll.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KalitaKonrad/SDSZ-Obwodnica-lll/issues"
+  },
+  "homepage": "https://github.com/KalitaKonrad/SDSZ-Obwodnica-lll#readme",
+  "dependencies": {
+    "assets": "^3.0.1",
+    "mainloop.js": "^1.0.4",
+    "ress": "^2.0.4",
+    "sass": "^1.26.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "babel-jest": "^25.5.1",
+    "husky": "^4.2.5",
+    "jest": "^25.5.3",
+    "parcel-bundler": "^1.12.4",
+    "prettier": "2.0.5",
+    "pretty-quick": "^2.0.1"
+  }
+}
