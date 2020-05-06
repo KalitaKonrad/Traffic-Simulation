@@ -8,7 +8,7 @@
   this.slowProbability = 0.05;
 }*/
 
-class Vehicle {
+export default class Vehicle {
   constructor(id, type, positionX, positionY, velocity, max_velocity, destination_id) {
     this._id = id;
     this._type = type;
@@ -90,19 +90,4 @@ class Vehicle {
     }
     return false;
   }
-}
-
-var mycar = new Vehicle(1, 'Truck', 1, 1, 3, 8);
-/*console.log(mycar._velocity);
-//check for velocity and move
-mycar.changeVelocity();
-console.log(mycar._velocity);
-mycar.move();
-console.log(mycar._positionX);
-//check for setter and getter
-
-console.log("pos2 = ", pos2);*/
-//check for equals ()
-var mycar2 = new Vehicle(1, 'Truck', 1, 1, 5, 8);
-var ans = mycar.equals(mycar2);
-console.log(ans);
+};
