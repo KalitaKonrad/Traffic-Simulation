@@ -1,8 +1,7 @@
 import VEHICLES_CONST from '../consts/vehicles.const';
 
-
 export default class Vehicle {
-  constructor(x, y, type=VEHICLES_CONST.CAR, velocity=0, maxVelocity=10, destinationId=1) {
+  constructor(x, y, type = VEHICLES_CONST.CAR, velocity = 0, maxVelocity = 10, destinationId = 1) {
     this.x = x;
     this.y = y;
 
@@ -11,9 +10,9 @@ export default class Vehicle {
     this.maxVelocity = maxVelocity;
     this.destinationId = destinationId;
 
-    this.slowProbability = 0.5;
+    this.slowProbability = 0.05;
   }
- 
+
   accelerate() {
     if (this.velocity + 1 >= this.maxVelocity) {
       this.velocity = this.maxVelocity;
@@ -40,4 +39,4 @@ export default class Vehicle {
   equals(x) {
     return this === x;
   }
-};
+}
