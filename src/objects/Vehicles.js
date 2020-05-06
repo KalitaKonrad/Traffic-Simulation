@@ -1,76 +1,30 @@
-/*function Vehicle {
-  this.id = 0;
-  this.type;
-  this.positionX = 0;
-  this.positionY = 0;
-  this.velocity = 0;
-  this.maxVelocity = 0;
-  this.slowProbability = 0.05;
-}*/
+import VEHICLES_CONST from '../consts/vehicles.const';
+
 
 export default class Vehicle {
-  constructor(id, type, positionX, positionY, velocity, max_velocity, destination_id) {
-    this._id = id;
-    this._type = type;
-    this._positionX = positionX;
-    this._positionY = positionY;
-    this._velocity = velocity;
-    this._max_velocity = max_velocity;
-    this._destination_id = destination_id;
-    this._slowProbability = 0.5;
+  constructor(x, y, type=VEHICLES_CONST.CAR, velocity=0, maxVelocity=10, destinationId=1) {
+    this.x = x;
+    this.y = y;
+
+    this.type = type;
+    this.velocity = velocity;
+    this.maxVelocity = maxVelocity;
+    this.destinationId = destinationId;
+
+    this.slowProbability = 0.5;
   }
-  //-------getters
-  get id() {
-    return this._id;
-  }
-
-  get destionation_id() {
-    return this._destination_id;
-  }
-
-  get type() {
-    return this._type;
-  }
-
-  get positionX() {
-    return this._positionX;
-  }
-
-  get positionY() {
-    return this._positionY;
-  }
-
-  get velocity() {
-    return this._velocity;
-  }
-
-  //--------setters
-
-  set positionX(x) {
-    this._positionX = x;
-  }
-
-  set positionY(x) {
-    this._positionY = x;
-  }
-
-  set velocity(x) {
-    this._velocity = x;
-  }
-
-  //-------------methods
-
+ 
   accelerate() {
-    if (this._velocity + 1 >= this._max_velocity) {
-      this._velocity = this._max_velocity;
+    if (this.velocity + 1 >= this.maxVelocity) {
+      this.velocity = this.maxVelocity;
     } else {
-      this._velocity += 1;
+      this.velocity += 1;
     }
   }
 
   decelerate() {
-    if (this._slowProbability > Math.random()) {
-      this._velocity -= 1;
+    if (this.slowProbability > Math.random()) {
+      this.velocity -= 1;
     }
   }
 
@@ -80,14 +34,10 @@ export default class Vehicle {
   }
 
   move() {
-    this._positionX += this._velocity;
+    this.x += this.velocity;
   }
 
   equals(x) {
-    if (this == x) return true;
-    if (x instanceof Vehicle) {
-      return this.id == x.id;
-    }
-    return false;
+    return this === x;
   }
 };
