@@ -27,7 +27,8 @@ export default class Road {
     for (let i = vehicle.x + 1; i < this.length; i++) {
       if (this.roadArray[vehicle.y][i] !== null) {
         distance = i - vehicle.x - 1;
-        break;
+        vehicle.velocity = Math.min(distance, vehicle.velocity);
+        return;
       }
     }
   }

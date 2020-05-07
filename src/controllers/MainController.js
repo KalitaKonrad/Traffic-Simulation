@@ -1,15 +1,13 @@
 import Simulation from '../Simulation';
 
 export default class MainController {
-    constructor(simulation) {
-        this.simulation = simulation;
-    }
+  constructor(simulation) {
+    this.simulation = simulation;
+  }
 
-    setUp() {
-        
-    }
+  setUp() {}
 
-    start() {
-        this.simulation.loop();
-    }
+  start() {
+    this.simulation.loop();
+  }
 }
