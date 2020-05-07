@@ -7,8 +7,10 @@ export default class Simulation {
     constructor() {
         this.road = new Road();
         this.intersection = new Intersection(1);
+        this.x = 0;
 
         this.setUp();
+        window.requestAnimationFrame(this.loop.bind(this));
     }
 
     setUp() {
@@ -24,20 +26,19 @@ export default class Simulation {
     }
 
     setUpCanvas() {
-        this.canvas.width = this.canvas.clientWidth;
-        this.canvas.height = this.canvas.clientHeight;
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
     }
 
     update() {
         this.road.update();
         console.log(this.road.toString());
         console.log("Vehicles count ", this.road.vehicles.length);
+        this.x += 1;
     }
 
-    render() {
-        this.clear();
-        this.ctx.rect(20, 20, 150, 100);
-        this.ctx.stroke();
+    draw() {
+        this.ctx.fillRect(this.x, 100, 100, 100);
       }
 
     clear() {
@@ -45,13 +46,10 @@ export default class Simulation {
     }
 
     loop() {
+        this.clear();
+        this.draw();
         this.update();
-        this.update();
-        this.road.addVehicle(new Car(0,0,0,0));
-        for(let i=0; i< 20; i++){
-            this.update();
-            this.clear();
-            this.render();
-        }
+
+        window.requestAnimationFrame(this.loop.bind(this));
     }
 }
