@@ -1,7 +1,7 @@
 import { VEHICLE_TYPE } from '../consts/vehicles.const';
 
 export default class Vehicle {
-  constructor(id, x, y, type = VEHICLE_TYPE.CAR, velocity = 0, maxVelocity = 10, destinationId = 1) {
+  constructor(id, x, y, destinationId, type, velocity, maxVelocity) {
     this.id = id;
 
     this.x = x;
