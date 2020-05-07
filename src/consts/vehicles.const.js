@@ -1,4 +1,4 @@
-export default VEHICLE_TYPE = {
+export const VEHICLE_TYPE = {
   CAR: 'CAR',
   TRUCK: 'TRUCK',
 };

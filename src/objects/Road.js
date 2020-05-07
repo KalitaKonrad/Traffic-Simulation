@@ -1,14 +1,20 @@
-import VEHICLES_CONST from './consts/vehicles.const';
-import Vehicle from './Vehicles.js';
+import { VEHICLE_TYPE } from '../consts/vehicles.const';
+import Intersection from './Intersection';
 
 export default class Road {
-  constructor(roadArray, vehicles, length, width, velocityLimit, id) {
-    this.roadArray = new Array(width).fill(null).map(() => new Array(length).fill(null));
+  constructor(length = 100, width = 3, velocityLimit = 10) {
     this.length = length;
     this.width = width;
     this.velocityLimit = velocityLimit;
-    this.id = id;
+
+    this.roadArray = new Array(width).fill(null).map(() => new Array(length).fill(null));
     this.vehicles = [];
+
+    this.intersectionOut = null;
+  }
+
+  setIntersection(intersection) {
+    this.intersectionOut = intersection;
   }
 
   addVehicle(vehicle) {
@@ -19,48 +25,64 @@ export default class Road {
   checkCollision(vehicle) {
     let distance = 0;
     for (let i = vehicle.x + 1; i < this.length; i++) {
-      if (this.roadArray[vehicle.x][i] != null) {
+      if (this.roadArray[vehicle.y][i] !== null) {
         distance = i - vehicle.x - 1;
         break;
       }
     }
   }
 
+  slowDownBeforeIntersection(vehicle) {
+    let distance = this.length - vehicle.x - 1;
+    if (vehicle.velocity > distance - 1) {
+      distance > 0 ? (vehicle.velocity = distance) : (vehicle.velocity = 0);
+    }
+  }
+
   update() {
-    let toRemove = [];
+    let newVehicles = [];
     this.vehicles.forEach((v) => {
       v.changeVelocity();
       if (v.velocity > this.velocityLimit) {
         v.velocity = this.velocityLimit;
       }
+
+      if (this.intersectionOut.lights === 1) {
+        this.slowDownBeforeIntersection(v);
+      }
+
       this.checkCollision(v);
 
       if (v.x + v.velocity < this.length) {
         v.move();
         this.roadArray[v.y][v.x] = v;
+        newVehicles.push(v);
       } else {
-        toRemove.push(v);
         this.roadArray[v.y][v.x] = null;
+        if (this.intersectionOut.id !== v.id) {
+          this.intersectionOut.addVehicleFromRoad(v);
+        }
       }
+
       if (v.velocity > 0) {
         this.roadArray[v.y][v.x - v.velocity] = null;
       }
-      // TODO:  vehicles.removeAll(toRemove);
     });
+    this.vehicles = newVehicles;
   }
 
   toString() {
     let result = 'Road not initialized';
 
-    if (this.roadArray != null) {
+    if (this.roadArray !== null) {
       result = '';
       for (let i = 0; i < this.roadArray.length; i++) {
         for (let j = 0; j < this.roadArray[0].length; j++) {
           if (this.roadArray[i][j] == null) result += '-';
           else {
-            if (this.roadArray[i][j].type === VEHICLES_CONST.TRUCK) result += 'T';
+            if (this.roadArray[i][j].type === VEHICLE_TYPE.TRUCK) result += 'T';
             else {
-              if (this.roadArray[i][j].type === VEHICLES_CONST.CAR) result += this.roadArray[i][j].velocity;
+              if (this.roadArray[i][j].type === VEHICLE_TYPE.CAR) result += this.roadArray[i][j].velocity;
               else result += '?';
             }
           }
