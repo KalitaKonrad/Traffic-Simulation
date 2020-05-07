@@ -1,20 +1,42 @@
 import { VEHICLE_TYPE } from '../consts/vehicles.const';
 
 export default class Vehicle {
+  /**
+   * Base Vehicle class for Nagel-Schreckenberg model.
+   *
+   *
+   * @param {int} id                             Vehicle identifier
+   *
+   * @param {int} x                              This is a current Vehicle position in x-axis
+   * @param {int} y                              Current road lane of the road occupied by the Vehicle
+   *
+   * @param {int} destinationId
+   * @param {VEHICLE_TYPE} type                           Vehicle type from VEHICLE_TYPE const
+   * @param {int} velocity                       Current velocity of the Vehicle
+   * @param {int} maxVelocity                    Constant speed limit for the Vehicle
+   *
+   * @param {float} slowProbability                is the Probability iof breaking  by the Vehicle, default value is 0.05
+   *
+   */
   constructor(id, x, y, destinationId, type, velocity, maxVelocity) {
     this.id = id;
 
     this.x = x;
     this.y = y;
 
+    this.destinationId = destinationId;
     this.type = type;
     this.velocity = velocity;
     this.maxVelocity = maxVelocity;
-    this.destinationId = destinationId;
 
     this.slowProbability = 0.05;
   }
 
+  /**
+   * Method used to calculate acceleration of the Vehicle.
+   *
+   * @return void
+   */
   accelerate() {
     if (this.velocity + 1 >= this.maxVelocity) {
       this.velocity = this.maxVelocity;
@@ -23,21 +45,42 @@ export default class Vehicle {
     }
   }
 
-  decelerate() {
+  /**
+   * Method used to calculate probability of deceleration of the Vehicle.
+   *
+   * @return void
+   */
+  brake() {
     if (this.slowProbability > Math.random()) {
       this.velocity -= 1;
     }
   }
 
+  /**
+   * Method wrapper used to calculate acceleration and deceleraation of the Vehicle.
+   *
+   * @return void
+   */
   changeVelocity() {
     this.accelerate();
-    this.decelerate();
+    this.brake();
   }
 
+  /**
+   * Method is used to update Vehicle's velocity and position.
+   *
+   * @return void
+   */
   move() {
     this.x += this.velocity;
   }
 
+  /**
+   * Method is used to compare Vehicle objects.
+   * @param {Vehicle} x
+   *
+   * @return {Boolean}
+   */
   equals(x) {
     return this === x;
   }

@@ -1,7 +1,13 @@
 import { VEHICLE_TYPE } from '../consts/vehicles.const';
-import Intersection from './Intersection';
 
 export default class Road {
+  /**
+   * Road class used to simulate traffic in Nagel-Schreckenberg model.
+   *
+   * @param {int} length                  This is the total length of the road.
+   * @param {int} width                   Number of the lanes in the road.
+   * @param {int} velocityLimit           Speed Limit, max velocity on the entire road.
+   */
   constructor(length = 100, width = 3, velocityLimit = 10) {
     this.length = length;
     this.width = width;
