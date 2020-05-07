@@ -7,7 +7,8 @@ Plan projektu:
 - [x] Sformułowanie problemu.
 - [x] Analiza dostępnych rozwiązań.
 - [ ] Budowa algorytmu i modelu matematycznego.
-- [ ] Implementacja w języku Java.
+- [ ] Implementacja w języku JavaScript.
+- [ ] Implementacja animacji.
 - [ ] Analiza i ocena poprawności wyników.
 
 ## Project setup
