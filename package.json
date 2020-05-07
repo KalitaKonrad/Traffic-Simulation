@@ -21,6 +21,7 @@
   "homepage": "https://github.com/KalitaKonrad/SDSZ-Obwodnica-lll#readme",
   "dependencies": {
     "assets": "^3.0.1",
+    "canvas": "^2.6.1",
     "mainloop.js": "^1.0.4",
     "ress": "^2.0.4",
     "sass": "^1.26.5"
