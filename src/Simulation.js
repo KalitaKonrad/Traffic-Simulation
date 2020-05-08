@@ -7,7 +7,8 @@ export default class Simulation {
     constructor() {
         this.road = new Road();
         this.intersection = new Intersection(1);
-        this.x = 0;
+
+        this.interval = 500;
 
         this.setUp();
         window.requestAnimationFrame(this.loop.bind(this));
@@ -34,11 +35,16 @@ export default class Simulation {
         this.road.update();
         console.log(this.road.toString());
         console.log("Vehicles count ", this.road.vehicles.length);
-        this.x += 1;
     }
 
     draw() {
-        this.ctx.fillRect(this.x, 100, 100, 100);
+        this.ctx.fillStyle = "black";
+        this.ctx.fillRect(0, 100, window.innerWidth, 100);
+
+        this.ctx.fillStyle = "#FF0000";
+        this.road.vehicles.forEach(vehicle => {
+          this.ctx.fillRect(vehicle.x, 100, 100, 50);
+        })
       }
 
     clear() {
@@ -46,10 +52,17 @@ export default class Simulation {
     }
 
     loop() {
-        this.clear();
-        this.draw();
+      for(let i=0; i<20; i++){
         this.update();
-
-        window.requestAnimationFrame(this.loop.bind(this));
+      }
+        
+      // setInterval(()=>{
+      //   this.clear();
+      //   this.draw();
+      //   this.update();
+      
+      //   window.requestAnimationFrame(this.loop.bind(this));
+      // }, this.interval);
     }
+
 }

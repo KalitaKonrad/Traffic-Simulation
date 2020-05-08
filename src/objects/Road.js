@@ -37,12 +37,86 @@ export default class Road {
         return;
       }
     }
+    if(distance !== 0 && vehicle.velocity > distance - 1){
+      if(!this.switchLaneLeft(vehicle)) {
+        vehicle.velocity = distance - 1;
+      }
+    }
+    // if(vehicle.velocity > 0){
+    //   this.switchLaneRight(vehicle);
+    // }
   }
 
   slowDownBeforeIntersection(vehicle) {
     let distance = this.length - vehicle.x - 1;
     if (vehicle.velocity > distance - 1) {
       distance > 0 ? (vehicle.velocity = distance) : (vehicle.velocity = 0);
+    }
+  }
+
+  switchLaneLeft(vehicle) {
+    if (vehicle.y > 0) {
+      prev = null;
+      next = null;
+      for (let i = vehicle.x; i > 0; i--) {
+        if (this.roadArray[vehicle.y - 1][i] !== null) {
+          prev = this.roadArray[vehicle.y - 1][i];
+          break;
+        }
+      }
+
+      for (let i = vehicle.x; i < this.length; i++) {
+        if (this.roadArray[vehicle.y - 1][i] !== null) {
+          next = this.roadArray[vehicle.y - 1][i];
+          break;
+        }
+      }
+
+      if(prev === null && next === null) {
+        vehicle.y = vehicle.y - 1;
+        this.roadArray[vehicle.y + 1][vehicle.x] = null;
+        return true;
+      } else if(prev.velocity < vehicle.x - prev.x - 1 && vehicle.velocity < next.x - vehicle.x - 1) {
+        vehicle.y = vehicle.y - 1;
+        this.roadArray[vehicle.y + 1][vehicle.x] = null;
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
+  switchLaneRight(vehicle) {
+    if (vehicle.y < 2) {
+      prev = null;
+      next = null;
+      for (let i = vehicle.x; i > 0; i--) {
+        if (this.roadArray[vehicle.y + 1][i] !== null) {
+          prev = this.roadArray[vehicle.y + 1][i];
+          break;
+        }
+      }
+      if (prev === null || prev.velocity < vehicle.x - prev.x - 1) {
+        for (let i = vehicle.x; i < this.length; i++) {
+          if (this.roadArray[vehicle.y + 1][i] !== null) {
+            next = this.roadArray[vehicle.y + 1][i];
+            break;
+          }
+        }
+        if (next === null || vehicle.velocity < next.x - vehicle.x - 1) {
+          vehicle.y = vehicle.y + 1;
+          this.roadArray[vehicle.y - 1][vehicle.x] = null;
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    } else {
+      return false;
     }
   }
 
