@@ -52,8 +52,11 @@ export default class Simulation {
     }
 
     loop() {
-      for(let i=0; i<20; i++){
+      for(let i=0; i<5; i++){
         this.update();
+        // if(i===2) {
+        //   this.road.addVehicle(new Car(0,20,0,0));
+        // }
       }
         
       // setInterval(()=>{
