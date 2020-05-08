@@ -151,7 +151,7 @@ export default class Road {
         newVehicles.push(v);
       } else {
         this.roadArray[v.y][v.x] = null;
-        if (this.intersectionOut.id !== v.id) {
+        if (this.intersectionOut.id !== v.destinationId) {
           this.intersectionOut.addVehicleFromRoad(v);
         }
       }

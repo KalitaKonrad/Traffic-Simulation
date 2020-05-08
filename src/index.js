@@ -16,12 +16,33 @@ intersection.lights = 1;
 road.setIntersection(intersection);
 road.addVehicle(new Car(0,0,0,0));
 
-for(let i=0; i<15; i++){
-    if(i==10) {
-        road.addVehicle(new Car(2,60,2,0));
-    }
+const step = () => {
     road.update();
     console.log(road.toString());
     console.log("Vehicles count ", road.vehicles.length);
+};
+
+const addVehicle = () => {
+    road.addVehicle(new Car(0,0,0,0));
 }
 
+const addVehicleOnMiddle = () => {
+    road.addVehicle(new Car(1,50,1,0));
+};
+
+document.querySelector('#step-btn')
+.addEventListener('click', ($event)=> {
+    step();
+}); 
+
+document.querySelector('#add-start')
+.addEventListener('click', ($event)=> {
+    addVehicle();
+    step();
+}); 
+
+document.querySelector('#add-mid')
+.addEventListener('click', ($event)=> {
+    addVehicleOnMiddle();
+    step();
+}); 

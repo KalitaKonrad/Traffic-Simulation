@@ -29,7 +29,7 @@ export default class Vehicle {
     this.velocity = velocity;
     this.maxVelocity = maxVelocity;
 
-    this.slowProbability = 0.3;
+    this.slowProbability = 0.05;
   }
 
   /**
