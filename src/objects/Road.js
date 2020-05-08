@@ -56,46 +56,7 @@ export default class Road {
   }
 
   switchLaneLeft(vehicle) {
-    console.log('Switch Lane Left');
     if (vehicle.y > 0) {
-      let prev = {
-        x: 0,
-      };
-      let next = {
-        x: this.length - 1,
-      };
-      for (let i = vehicle.x; i > 0; i--) {
-        if (this.roadArray[vehicle.y - 1][i] !== null) {
-          prev = this.roadArray[vehicle.y - 1][i];
-          break;
-        }
-      }
-
-      for (let i = vehicle.x; i < this.length; i++) {
-        if (this.roadArray[vehicle.y - 1][i] !== null) {
-          next = this.roadArray[vehicle.y - 1][i];
-          break;
-        }
-      }
-
-      if (prev === null && next === null) {
-        vehicle.y = vehicle.y - 1;
-        this.roadArray[vehicle.y + 1][vehicle.x] = null;
-        return true;
-      } else if (prev.velocity < vehicle.x - prev.x - 1 && vehicle.velocity < next.x - vehicle.x - 1) {
-        vehicle.y = vehicle.y - 1;
-        this.roadArray[vehicle.y + 1][vehicle.x] = null;
-        return true;
-      } else {
-        return false;
-      }
-    } else {
-      return false;
-    }
-  }
-
-  switchLaneRight(vehicle) {
-    if (vehicle.y < this.width-1) {
       let prev = {
         x: 0,
       };
@@ -103,32 +64,69 @@ export default class Road {
         x: this.length,
       };
       for (let i = vehicle.x; i > 0; i--) {
-        if (this.roadArray[vehicle.y + 1][i] !== null) {  
+        if (this.roadArray[vehicle.y - 1][i] !== null) {
+          prev = this.roadArray[vehicle.y - 1][i];
+          break;
+        }
+      }
+      for (let i = vehicle.x; i < this.length; i++) {
+        if (this.roadArray[vehicle.y - 1][i] !== null) {
+          next = this.roadArray[vehicle.y - 1][i];
+          break;
+        }
+      }
+
+      if (next.x === this.length && prev.x === 0) {
+        vehicle.y -= 1;
+        this.roadArray[vehicle.y + 1][vehicle.x] = null;
+        return true;
+      }
+
+      if (prev.velocity < vehicle.x - prev.x - 1 || prev.x === 0) {
+        if (vehicle.velocity < next.x - vehicle.x - 1 || next.x === this.length) {
+          vehicle.y -= 1;
+          this.roadArray[vehicle.y + 1][vehicle.x] = null;
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  switchLaneRight(vehicle) {
+    if (vehicle.y < this.width - 1) {
+      let prev = {
+        x: 0,
+      };
+      let next = {
+        x: this.length,
+      };
+      for (let i = vehicle.x; i > 0; i--) {
+        if (this.roadArray[vehicle.y + 1][i] !== null) {
           prev = this.roadArray[vehicle.y + 1][i];
           break;
         }
       }
-      for (let i = vehicle.x; i<this.length; i++){
-        if (this.roadArray[vehicle.y + 1][i] !== null) {  
+      for (let i = vehicle.x; i < this.length; i++) {
+        if (this.roadArray[vehicle.y + 1][i] !== null) {
           next = this.roadArray[vehicle.y + 1][i];
           break;
         }
       }
-      if(next.x === this.length && prev.x === 0) {
+      if (next.x === this.length && prev.x === 0) {
         vehicle.y += 1;
         this.roadArray[vehicle.y - 1][vehicle.x] = null;
         return true;
       }
 
-      if(prev.velocity < vehicle.x - prev.x - 1 || prev.x === 0) {
-        if(vehicle.velocity < next.x - vehicle.x -1 || next.x === this.length) {
+      if (prev.velocity < vehicle.x - prev.x - 1 || prev.x === 0) {
+        if (vehicle.velocity < next.x - vehicle.x - 1 || next.x === this.length) {
           vehicle.y += 1;
           this.roadArray[vehicle.y - 1][vehicle.x] = null;
           return true;
         }
-      } 
-      
-    } 
+      }
+    }
     return false;
   }
 
