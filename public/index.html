@@ -8,25 +8,23 @@
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Symulacja ruchu na obwodnicy</title>
-    <style>
-      canvas {
-        border: 1px solid;
-      }
-    </style>
-    
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
   </head>
   <body>
-    
-
     <div class="content">
-      <div class="simulation">
+      <!-- <div class="simulation">
         <canvas class="js-canvas">
         </canvas>
-      </div>
-      <button id="step-btn">Step</button>
-      <button id="add-start">Add Vehicle</button>
-      <button id="add-mid">Add Vehicle on Middle</button>
+      </div> -->
+      
+      <button id="step-btn" class="btn btn-outline-secondary btn-sm">Step</button>
+      <button id="add-start" class="btn btn-outline-secondary btn-sm">Add Vehicle</button>
+      <button id="add-mid" class="btn btn-outline-secondary btn-sm">Add Vehicle on Middle</button>
+      <div class="simulation" id="sim-div"></div>
     </div>
+
     <script src="../src/index.js"></script>
   </body>
 </html>

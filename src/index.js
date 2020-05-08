@@ -20,6 +20,7 @@ const step = () => {
     road.update();
     console.log(road.toString());
     console.log("Vehicles count ", road.vehicles.length);
+    document.querySelector('#sim-div').innerHTML = road.toString();
 };
 
 const addVehicle = () => {
