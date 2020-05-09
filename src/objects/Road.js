@@ -28,6 +28,18 @@ export default class Road {
     this.vehicles.push(vehicle);
   }
 
+  putVehicle(vehicle) {
+    let possibleLocations = [];
+
+    for (let i = 0; i < this.width; i++) {
+      if (this.roadArray[i][0] === null) possibleLocations.push(i);
+    }
+
+    vehicle.x = 0;
+    vehicle.y = possibleLocations[Math.floor(Math.random() * possibleLocations.length)];
+    this.addVehicle(vehicle);
+  }
+
   checkCollision(vehicle) {
     let distance = 0;
     for (let i = vehicle.x + 1; i < this.length; i++) {
