@@ -45,7 +45,14 @@ document.querySelector('#add-mid').addEventListener('click', ($event) => {
   step();
 });
 
-document.querySelector('#lights').addEventListener('click', ($event) => {
+const lightsBtn = document.querySelector('#lights');
+
+lightsBtn.addEventListener('click', ($event) => {
   road.intersectionOut.lights == 1 ? (road.intersectionOut.lights = 2) : (road.intersectionOut.lights = 1);
   step();
+  if (lightsBtn.classList.contains('btn-danger')) {
+    lightsBtn.classList.replace('btn-danger', 'btn-success');
+  } else {
+    lightsBtn.classList.replace('btn-success', 'btn-danger');
+  }
 });
