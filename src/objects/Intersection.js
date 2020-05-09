@@ -7,10 +7,10 @@ export default class Intersection {
     inSecondRoad = null,
     outFirstRoad = null,
     outSecondRoad = null,
-    vehicles = null,
+    carsInput = null,
+    description = null,
     lights = null, // 0 rondo, 1 - red light, 2 - green light
-    lightsCounter = null,
-    description = null
+    lightsCounter = null
   ) {
     this.id = id;
 
@@ -19,9 +19,10 @@ export default class Intersection {
     this.outFirstRoad = outFirstRoad;
     this.outSecondRoad = outSecondRoad;
 
-    this.vehicles = vehicles;
-    this.newVehicles = [];
-    this.vehiclesToProcess = [];
+    // this.vehicles = [];
+    this.carsInput = carsInput;
+    this.newVehicles = []; // vehicles from outer roud
+    this.vehiclesToProcess = []; // vehicles from Road object
     this.MAX_VEHICLES_PROCESSED = 3;
 
     this.lights = lights;
@@ -29,6 +30,7 @@ export default class Intersection {
     this.lightsCounter = lightsCounter;
 
     this.description = description;
+    this.vehicleGenerator = 0;
   }
 
   addNewVehicle(vehicle) {
@@ -37,6 +39,7 @@ export default class Intersection {
 
   addVehicleFromRoad(vehicle) {
     this.vehiclesToProcess.push(vehicle);
+    console.log('WITAAAAAM');
   }
 
   changeLights() {

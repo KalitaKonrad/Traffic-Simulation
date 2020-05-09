@@ -10,7 +10,7 @@ export default class Car extends Vehicle {
    * @param {int} y
    * @param {int} destinationId
    */
-  constructor(id, x, y, destinationId) {
-    super(id, x, y, destinationId, VEHICLE_TYPE.CAR, 0, 10);
+  constructor(id, x, y, destinationId, velocity) {
+    super(id, x, y, destinationId, VEHICLE_TYPE.CAR, velocity, 10);
   }
 }

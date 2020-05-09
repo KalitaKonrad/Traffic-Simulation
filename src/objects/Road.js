@@ -7,11 +7,13 @@ export default class Road {
    * @param {int} length                  This is the total length of the road.
    * @param {int} width                   Number of the lanes in the road.
    * @param {int} velocityLimit           Speed Limit, max velocity on the entire road.
+   * @param {int} id                      Road identifier.
    */
-  constructor(length = 100, width = 3, velocityLimit = 10) {
+  constructor(length = 100, width = 3, velocityLimit = 10, id = 0) {
     this.length = length;
     this.width = width;
     this.velocityLimit = velocityLimit;
+    this.id = id;
 
     this.roadArray = new Array(width).fill(null).map(() => new Array(length).fill(null));
     this.vehicles = [];
@@ -146,16 +148,9 @@ export default class Road {
     let newVehicles = [];
     this.vehicles.forEach((v) => {
       v.changeVelocity();
-
-      if (v.velocity > this.velocityLimit) {
-        v.velocity = this.velocityLimit;
-      }
-
-      if (this.intersectionOut.lights === 1) {
-        this.slowDownBeforeIntersection(v);
-      }
-
       this.checkCollision(v);
+      if (v.velocity > this.velocityLimit) v.velocity = this.velocityLimit;
+      if (this.intersectionOut.lights === 1) this.slowDownBeforeIntersection(v);
 
       if (v.x + v.velocity < this.length) {
         v.move();
@@ -167,10 +162,7 @@ export default class Road {
           this.intersectionOut.addVehicleFromRoad(v);
         }
       }
-
-      if (v.velocity > 0) {
-        this.roadArray[v.y][v.x - v.velocity] = null;
-      }
+      if (v.velocity > 0) this.roadArray[v.y][v.x - v.velocity] = null;
     });
     this.vehicles = newVehicles;
   }
