@@ -39,7 +39,6 @@ export default class Intersection {
 
   addVehicleFromRoad(vehicle) {
     this.vehiclesToProcess.push(vehicle);
-    console.log('WITAAAAAM');
   }
 
   changeLights() {
@@ -51,6 +50,9 @@ export default class Intersection {
   }
 
   update() {
+    /**
+     * Adding Vehicles to processing
+     */
     let vehiclesNum;
     if (this.MAX_VEHICLES_PROCESSED < this.vehiclesToProcess.length) vehiclesNum = this.MAX_VEHICLES_PROCESSED;
     else {
@@ -71,6 +73,9 @@ export default class Intersection {
       }
       vehiclesNum = this.vehiclesToProcess.length;
     }
+    /**
+     * Processing Vehicles
+     */
     for (let i = 0; i < vehiclesNum; i++) {
       if (this.id === this.vehiclesToProcess[0].destinationId) this.vehiclesToProcess.splice(0, 1);
       else {
@@ -83,9 +88,9 @@ export default class Intersection {
           } else {
             if (distance === distance2) {
               if (Math.random() < 0) this.this.outFirstRoad.putVehicle(this.vehiclesToProcess[0]);
-              else this.this.outSecondRoad.putVehicle(this.vehiclesToProcess[0]);
+              else this.outSecondRoad.putVehicle(this.vehiclesToProcess[0]);
             } else {
-              this.this.outSecondRoad.putVehicle(this.vehiclesToProcess[0]);
+              this.outSecondRoad.putVehicle(this.vehiclesToProcess[0]);
             }
           }
         } else {
@@ -102,7 +107,7 @@ export default class Intersection {
       }
     }
     this.lightsCounter--;
-    if (this.lightsCounter === 0) {
+    if (this.lightsCounter <= 0) {
       this.changeLights();
       this.lightsCounter = this.lightsInit;
     }

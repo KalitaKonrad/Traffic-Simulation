@@ -32,11 +32,9 @@ export default class Road {
 
   putVehicle(vehicle) {
     let possibleLocations = [];
-
     for (let i = 0; i < this.width; i++) {
       if (this.roadArray[i][0] === null) possibleLocations.push(i);
     }
-
     vehicle.x = 0;
     vehicle.y = possibleLocations[Math.floor(Math.random() * possibleLocations.length)];
     this.addVehicle(vehicle);
@@ -47,7 +45,6 @@ export default class Road {
     for (let i = vehicle.x + 1; i < this.length; i++) {
       if (this.roadArray[vehicle.y][i] !== null) {
         distance = i - vehicle.x - 1;
-        // vehicle.velocity = Math.min(distance, vehicle.velocity);
         break;
       }
     }
@@ -56,17 +53,7 @@ export default class Road {
         vehicle.velocity = distance - 1;
       }
     }
-    if (vehicle.velocity > 0) {
-      this.switchLaneRight(vehicle);
-    }
-    return vehicle;
-  }
-
-  slowDownBeforeIntersection(vehicle) {
-    let distance = this.length - vehicle.x - 1;
-    if (vehicle.velocity > distance - 1) {
-      distance > 0 ? (vehicle.velocity = distance) : (vehicle.velocity = 0);
-    }
+    if (vehicle.velocity > 0) this.switchLaneRight(vehicle);
   }
 
   switchLaneLeft(vehicle) {
@@ -150,7 +137,12 @@ export default class Road {
       v.changeVelocity();
       this.checkCollision(v);
       if (v.velocity > this.velocityLimit) v.velocity = this.velocityLimit;
-      if (this.intersectionOut.lights === 1) this.slowDownBeforeIntersection(v);
+      if (this.intersectionOut.lights === 1) {
+        let distance = this.length - v.x - 1;
+        if (v.velocity > distance - 1) {
+          distance > 0 ? (v.velocity = distance) : (v.velocity = 0);
+        }
+      }
 
       if (v.x + v.velocity < this.length) {
         v.move();
