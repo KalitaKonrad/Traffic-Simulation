@@ -87,7 +87,7 @@ export default class Intersection {
             this.outFirstRoad.putVehicle(this.vehiclesToProcess[0]);
           } else {
             if (distance === distance2) {
-              if (Math.random() < 0) this.this.outFirstRoad.putVehicle(this.vehiclesToProcess[0]);
+              if (Math.random() < 0.5) this.this.outFirstRoad.putVehicle(this.vehiclesToProcess[0]);
               else this.outSecondRoad.putVehicle(this.vehiclesToProcess[0]);
             } else {
               this.outSecondRoad.putVehicle(this.vehiclesToProcess[0]);
