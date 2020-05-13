@@ -1,5 +1,6 @@
 import Road from './Road';
 import Car from './Car';
+import Truck from './Truck';
 import Intersection from './Intersection';
 
 import { NUM_OF_INTERSECTIONS } from '../consts/simulation.const';
@@ -164,14 +165,20 @@ export default class Simulation {
 
   inflowVehicles() {
     this.intersections.forEach((intersection) => {
-      // TODO: Truck vs Car
-      intersection.vehicleGenerator += intersection.carsInput;
-      while (intersection.vehicleGenerator >= 1) {
-        intersection.vehicleGenerator--;
+      intersection.inflowCoefficient += intersection.carsInput;
+      while (intersection.inflowCoefficient >= 1) {
         let destinationId = Math.floor(Math.random() * NUM_OF_INTERSECTIONS);
-        let vehicle = new Car(this.vehicles.length + 1, 0, 0, destinationId, Math.floor(Math.random() * 8));
+        let velocity = Math.floor(Math.random() * 8);
+        let id = this.vehicles.length + 1;
+
+        if (Math.random() < 0.75) {
+          let vehicle = new Car(id, 0, 0, destinationId, velocity);
+        } else {
+          let vehicle = new Truck(id, 0, 0, destinationId, velocity);
+        }
         this.vehicles.push(vehicle);
         intersection.addNewVehicle(vehicle);
+        intersection.inflowCoefficient--;
       }
     });
   }
