@@ -7,8 +7,7 @@
     "test": "jest",
     "serve": "parcel public/*.html",
     "build": "parcel build public/*.html",
-    "lint": "yarn prettier --write src/**/*.js",
-    "doc": "jsdoc -c jsdoc.json"
+    "lint": "yarn prettier --write src/**/*.js"
   },
   "repository": {
     "type": "git",
