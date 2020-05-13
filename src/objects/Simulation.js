@@ -40,17 +40,17 @@ export default class Simulation {
     const r8_1 = new Road(420, 3, 10, 3);
     const r8_2 = new Road(420, 3, 10, 4);
 
-    const r9_1 = new Road(100, 3, 10, 3);
-    const r9_2 = new Road(100, 3, 10, 4);
+    const r9_1 = new Road(155, 3, 10, 3);
+    const r9_2 = new Road(155, 3, 10, 4);
 
-    const r10_1 = new Road(100, 3, 10, 3);
-    const r10_2 = new Road(100, 3, 10, 4);
+    const r10_1 = new Road(230, 3, 10, 3);
+    const r10_2 = new Road(230, 3, 10, 4);
 
-    const r11_1 = new Road(100, 3, 10, 3);
-    const r11_2 = new Road(100, 3, 10, 4);
+    const r11_1 = new Road(300, 3, 10, 3);
+    const r11_2 = new Road(300, 3, 10, 4);
 
-    const r12_1 = new Road(100, 3, 10, 3);
-    const r12_2 = new Road(100, 3, 10, 4);
+    const r12_1 = new Road(370, 3, 10, 3);
+    const r12_2 = new Road(370, 3, 10, 4);
 
     const r13_1 = new Road(180, 3, 10, 3);
     const r13_2 = new Road(180, 3, 10, 4);
@@ -162,8 +162,9 @@ export default class Simulation {
     this.roads.push(r16_1, r15_2);
   }
 
-  generateNewCars() {
+  inflowVehicles() {
     this.intersections.forEach((intersection) => {
+      // TODO: Truck vs Car
       intersection.vehicleGenerator += intersection.carsInput;
       while (intersection.vehicleGenerator >= 1) {
         intersection.vehicleGenerator--;
@@ -177,7 +178,7 @@ export default class Simulation {
 
   update() {
     this.roads.forEach((road) => road.update());
-    this.generateNewCars();
+    this.inflowVehicles();
     this.intersections.forEach((intersection) => intersection.update());
   }
 
