@@ -1,6 +1,20 @@
 import Vehicle from './Vehicle';
 
 export default class Intersection {
+  /**
+   *  Intersection class for simulating traffic in Nagel-Schreckenberg model.
+   *
+   * @constructor
+   * @param {int} id                        Id of intersection
+   * @param {Road} inFirstRoad              Instance of first road in
+   * @param {Road} inSecondRoad             Instance of second road out
+   * @param {Road} outFirstRoad             Instance of first road in
+   * @param {Road} outSecondRoad            Instance of second road out
+   * @param {float} carsInput               Probability of car showing up at the intersection
+   * @param {String} name                   Name of the intersection
+   * @param {int} lights                    0- roundabout, 1 - red light, 2 - green light
+   * @param {int} lightsCounter
+   */
   constructor(
     id,
     inFirstRoad = null,
@@ -9,7 +23,7 @@ export default class Intersection {
     outSecondRoad = null,
     carsInput = null,
     name = null,
-    lights = null, // 0 rondo, 1 - red light, 2 - green light
+    lights = null,
     lightsCounter = null
   ) {
     this.id = id;
@@ -33,23 +47,42 @@ export default class Intersection {
     this.inflowCoefficient = 0;
   }
 
+  /**
+   * Method used for adding new Vehicle to the intersection
+   *
+   * @param  {Vehicle} vehicle
+   * @return void
+   */
   addNewVehicle(vehicle) {
     this.newVehicles.push(vehicle);
   }
 
+  /**
+   * Method used for loading vehicles from Road
+   *
+   * @param  {Vehicle} vehicle
+   * @return void
+   */
   addVehicleFromRoad(vehicle) {
     this.vehiclesToProcess.push(vehicle);
   }
 
+  /**
+   * Method used for changing light value - red to green and other way round
+   *
+   * @return void
+   */
   changeLights() {
     if (this.lights === 1) this.lights = 2;
     else if (this.lights === 2) this.lights = 1;
   }
 
+  /**
+   * Method used for adding vehicles to processing then processing them
+   *
+   * @return void
+   */
   update() {
-    /**
-     * Adding Vehicles to processing
-     */
     let vehiclesNum;
     if (this.MAX_VEHICLES_PROCESSED < this.vehiclesToProcess.length) vehiclesNum = this.MAX_VEHICLES_PROCESSED;
     else {
@@ -110,6 +143,11 @@ export default class Intersection {
     }
   }
 
+  /**
+   * Method used for converting Intersection to string
+   *
+   * @return {String}
+   */
   toString() {
     return `<Intersection: ${this.name} id=${this.id} lights=${this.lights} lightsCounter=${this.lightsCounter}>`;
   }

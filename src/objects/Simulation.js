@@ -6,6 +6,12 @@ import Intersection from './Intersection';
 import { NUM_OF_INTERSECTIONS } from '../consts/simulation.const';
 
 export default class Simulation {
+  /**
+   * Simulation class used for managing traffic in Nagel-Schreckenberg model.
+   *
+   * @param  {int} interval = 500
+   *
+   */
   constructor(interval = 500) {
     this.interval = interval;
 
@@ -16,6 +22,11 @@ export default class Simulation {
     this.setUp();
   }
 
+  /**
+   * Method used for setting up model, creating roads and intersections
+   *
+   * @return void
+   */
   setUp() {
     const r1_1 = new Road(290, 3, 10, 1);
     const r1_2 = new Road(290, 3, 10, 2);
@@ -163,6 +174,11 @@ export default class Simulation {
     this.roads.push(r16_1, r15_2);
   }
 
+  /**
+   * Method used for generating vehicles; cars or trucks
+   *
+   * @return void
+   */
   inflowVehicles() {
     this.intersections.forEach((intersection) => {
       intersection.inflowCoefficient += intersection.carsInput;
@@ -183,12 +199,22 @@ export default class Simulation {
     });
   }
 
+  /**
+   * Method used for updating whole simulation status, calling update of forads and intersections
+   *
+   * @return void
+   */
   update() {
     this.roads.forEach((road) => road.update());
     this.inflowVehicles();
     this.intersections.forEach((intersection) => intersection.update());
   }
 
+  /**
+   * Method used for generating string for Simulation
+   *
+   * @return void
+   */
   draw() {
     console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
     this.roads.forEach((road) => {

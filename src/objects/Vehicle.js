@@ -2,7 +2,7 @@ import { VEHICLE_TYPE } from '../consts/vehicles.const';
 
 export default class Vehicle {
   /**
-   * Base Vehicle class for Nagel-Schreckenberg model.
+   * Base Vehicle class for simulating Nagel-Schreckenberg model.
    *
    *
    * @param {int} id                             Vehicle identifier
@@ -33,7 +33,7 @@ export default class Vehicle {
   }
 
   /**
-   * Method used to calculate acceleration of the Vehicle.
+   * Method used for calculating acceleration of the Vehicle.
    *
    * @return void
    */
@@ -46,7 +46,7 @@ export default class Vehicle {
   }
 
   /**
-   * Method used to calculate probability of deceleration of the Vehicle.
+   * Method used for calculating probability of deceleration of the Vehicle.
    *
    * @return void
    */
@@ -57,7 +57,7 @@ export default class Vehicle {
   }
 
   /**
-   * Method wrapper used to calculate acceleration and deceleraation of the Vehicle.
+   * Method wrapper used for calculating acceleration and deceleraation of the Vehicle.
    *
    * @return void
    */
@@ -67,7 +67,7 @@ export default class Vehicle {
   }
 
   /**
-   * Method is used to update Vehicle's velocity and position.
+   * Method is used for updating Vehicle's velocity and position.
    *
    * @return void
    */
@@ -76,7 +76,7 @@ export default class Vehicle {
   }
 
   /**
-   * Method is used to compare Vehicle objects.
+   * Method is used for comparing Vehicle objects.
    * @param {Vehicle} x
    *
    * @return {Boolean}

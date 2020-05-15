@@ -2,7 +2,7 @@ import { VEHICLE_TYPE } from '../consts/vehicles.const';
 
 export default class Road {
   /**
-   * Road class used to simulate traffic in Nagel-Schreckenberg model.
+   * Road class used for simulating traffic in Nagel-Schreckenberg model.
    *
    * @param {int} length                  This is the total length of the road.
    * @param {int} width                   Number of the lanes in the road.
@@ -21,15 +21,33 @@ export default class Road {
     this.intersectionOut = null;
   }
 
+  /**
+   * Method used for setting an intersection for the road
+   *
+   * @param  {Intersection} intersection          An instance of Intersection
+   * @return void
+   */
   setIntersection(intersection) {
     this.intersectionOut = intersection;
   }
 
+  /**
+   * Method used for adding a new vehicle to vehicle array and road array
+   *
+   * @param  {Vehicle} vehicle      An instance of Vehicle
+   * @return void
+   */
   addVehicle(vehicle) {
     this.roadArray[vehicle.y][vehicle.x] = vehicle;
     this.vehicles.push(vehicle);
   }
 
+  /**
+   * Method used for putting vehicles at random position y and x = 0 on the road
+   *
+   * @param  {Vehicle} vehicle      An instance of Vehicle
+   * @return void
+   */
   putVehicle(vehicle) {
     let possibleLocations = [];
     for (let i = 0; i < this.width; i++) {
@@ -40,6 +58,12 @@ export default class Road {
     this.addVehicle(vehicle);
   }
 
+  /**
+   * Method used for checking if collision between vehicles occurs
+   *
+   * @param  {Vehicle} vehicle     An instance of Vehicle
+   * @return void
+   */
   checkCollision(vehicle) {
     let distance = 0;
     for (let i = vehicle.x + 1; i < this.length; i++) {
@@ -56,6 +80,13 @@ export default class Road {
     if (vehicle.velocity > 0) this.switchLaneRight(vehicle);
   }
 
+  /**
+   * switchLaneLeft/Right
+   * Methods used for changing lane
+   *
+   * @param  {Vehicle} vehicle      An instance of Vehicle
+   * @return void
+   */
   switchLaneLeft(vehicle) {
     if (vehicle.y > 0) {
       let prev = {
@@ -131,6 +162,11 @@ export default class Road {
     return false;
   }
 
+  /**
+   * Method used for updating road state and managing vehicles move
+   *
+   * @return void
+   */
   update() {
     let newVehicles = [];
     this.vehicles.forEach((v) => {
@@ -159,6 +195,11 @@ export default class Road {
     this.vehicles = newVehicles;
   }
 
+  /**
+   * Method used for converting Road to string
+   *
+   * @return {String}
+   */
   toString() {
     let result = 'Road not initialized';
 
