@@ -42,11 +42,8 @@ export default class Intersection {
   }
 
   changeLights() {
-    if (this.lights == 1) {
-      this.lights = 2;
-      return;
-    }
-    if (this.lights === 2) this.lights = 1;
+    if (this.lights === 1) this.lights = 2;
+    else if (this.lights === 2) this.lights = 1;
   }
 
   update() {
