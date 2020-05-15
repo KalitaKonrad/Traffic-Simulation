@@ -9,6 +9,10 @@ import { INTERSECTION_TYPES } from '../consts/intersections.const';
 export default class Simulation {
   /**
    * Simulation class used for managing traffic in Nagel-Schreckenberg model.
+   *
+   * @property {Array<Vehicle>} vehicles            - Array of all the vehicles in current simulation.
+   * @property {Array<Road>} roads                  - Array of all the roads in current simulation.
+   * @property {Array<Intersection>} intersections  - Array of all the intersections in currenct simulations.
    */
   constructor() {
     this.vehicles = [];

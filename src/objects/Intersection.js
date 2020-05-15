@@ -34,10 +34,9 @@ export default class Intersection {
     this.outFirstRoad = outFirstRoad;
     this.outSecondRoad = outSecondRoad;
 
-    // this.vehicles = [];
     this.carsInput = carsInput;
-    this.newVehicles = []; // vehicles from outer roud
-    this.vehiclesToProcess = []; // vehicles from Road object
+    this.newVehicles = []; // inflow vehicles from outer road
+    this.vehiclesToProcess = []; // vehicles from Road object connected to Intersection
     this.MAX_VEHICLES_PROCESSED = 3;
 
     this.lights = lights;
