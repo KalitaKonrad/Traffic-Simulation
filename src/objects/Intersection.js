@@ -1,4 +1,5 @@
 import Vehicle from './Vehicle';
+import { INTERSECTION_TYPES } from '../consts/intersections.const';
 
 export default class Intersection {
   /**
@@ -12,7 +13,7 @@ export default class Intersection {
    * @param {Road} outSecondRoad            Instance of second road out
    * @param {float} carsInput               Probability of car showing up at the intersection
    * @param {String} name                   Name of the intersection
-   * @param {int} lights                    0- roundabout, 1 - red light, 2 - green light
+   * @param {INTERSECTION_TYPES} lights      0- roundabout, 1 - red light, 2 - green light
    * @param {int} lightsCounter
    */
   constructor(
@@ -73,8 +74,8 @@ export default class Intersection {
    * @return void
    */
   changeLights() {
-    if (this.lights === 1) this.lights = 2;
-    else if (this.lights === 2) this.lights = 1;
+    if (this.lights === INTERSECTION_TYPES.RED_LIGHT) this.lights = INTERSECTION_TYPES.GREEN_LIGHT;
+    else if (this.lights === INTERSECTION_TYPES.GREEN_LIGHT) this.lights = INTERSECTION_TYPES.RED_LIGHT;
   }
 
   /**
@@ -86,7 +87,7 @@ export default class Intersection {
     let vehiclesNum;
     if (this.MAX_VEHICLES_PROCESSED < this.vehiclesToProcess.length) vehiclesNum = this.MAX_VEHICLES_PROCESSED;
     else {
-      if (this.lights !== 2) {
+      if (this.lights !== INTERSECTION_TYPES.GREEN_LIGHT) {
         let numOfVehicles = this.MAX_VEHICLES_PROCESSED - this.vehiclesToProcess.length;
 
         if (numOfVehicles > this.newVehicles.length) {

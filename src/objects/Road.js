@@ -1,4 +1,5 @@
 import { VEHICLE_TYPE } from '../consts/vehicles.const';
+import { INTERSECTION_TYPES } from '../consts/intersections.const';
 
 export default class Road {
   /**
@@ -173,7 +174,7 @@ export default class Road {
       v.changeVelocity();
       this.checkCollision(v);
       if (v.velocity > this.velocityLimit) v.velocity = this.velocityLimit;
-      if (this.intersectionOut.lights === 1) {
+      if (this.intersectionOut.lights === INTERSECTION_TYPES.RED_LIGHT) {
         let distance = this.length - v.x - 1;
         if (v.velocity > distance - 1) {
           distance > 0 ? (v.velocity = distance) : (v.velocity = 0);

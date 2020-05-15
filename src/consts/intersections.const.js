@@ -1,0 +1,5 @@
+export const INTERSECTION_TYPES = {
+  ROUNDABOUT: 0,
+  RED_LIGHT: 1,
+  GREEN_LIGHT: 2,
+};
