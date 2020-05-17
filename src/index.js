@@ -31,3 +31,22 @@ L.tileLayer(tileUrl, {
 }).addTo(map);
 
 main();
+
+import Simulation from '../src/objects/Simulation';
+
+const sim = new Simulation();
+sim.run();
+sim.run();
+sim.run();
+sim.run();
+sim.run();
+sim.run();
+sim.run();
+sim.run();
+sim.run();
+sim.run();
+sim.run();
+sim.run();
+sim.run();
+sim.run();
+sim.run();

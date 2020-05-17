@@ -73,8 +73,8 @@ export default class Intersection {
    * @return void
    */
   changeLights() {
-    if (this.lights === INTERSECTION_TYPES.RED_LIGHT) this.lights = INTERSECTION_TYPES.GREEN_LIGHT;
-    else if (this.lights === INTERSECTION_TYPES.GREEN_LIGHT) this.lights = INTERSECTION_TYPES.RED_LIGHT;
+    if (this.lights === 1) this.lights = 2;
+    else if (this.lights === 2) this.lights = 1;
   }
 
   /**
@@ -86,7 +86,7 @@ export default class Intersection {
     let vehiclesNum;
     if (this.MAX_VEHICLES_PROCESSED < this.vehiclesToProcess.length) vehiclesNum = this.MAX_VEHICLES_PROCESSED;
     else {
-      if (this.lights !== INTERSECTION_TYPES.GREEN_LIGHT) {
+      if (this.lights !== 2) {
         let numOfVehicles = this.MAX_VEHICLES_PROCESSED - this.vehiclesToProcess.length;
 
         if (numOfVehicles > this.newVehicles.length) {
@@ -117,7 +117,7 @@ export default class Intersection {
             this.outFirstRoad.putVehicle(this.vehiclesToProcess[0]);
           } else {
             if (distance === distance2) {
-              if (Math.random() < 0.5) this.this.outFirstRoad.putVehicle(this.vehiclesToProcess[0]);
+              if (Math.random() < 0.5) this.outFirstRoad.putVehicle(this.vehiclesToProcess[0]);
               else this.outSecondRoad.putVehicle(this.vehiclesToProcess[0]);
             } else {
               this.outSecondRoad.putVehicle(this.vehiclesToProcess[0]);
