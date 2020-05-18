@@ -371,4 +371,43 @@ export default class Simulation {
     this.update();
     this.draw();
   }
+
+  /**
+   * Method used to calculate total number of vehicles on roads.
+   *
+   * @returns {number}
+   */
+  numberOfVehiclesOnRoads() {
+    return this.roads.map((road) => road.vehicles.length).reduce((a, b) => a + b);
+  }
+
+  /**
+   * Method used to calculate average velocity of vehicles on roads.
+   *
+   * @returns {number}
+   */
+  averageVelocity() {
+    let result = 0;
+    this.roads.forEach((road) => {
+      road.vehicles.forEach((vehicle) => (result += vehicle.velocity));
+    });
+    return result / this.numberOfVehiclesOnRoads();
+  }
+
+  /**
+   * Methods used to get statistics about destination points.
+   *
+   * @returns {{IntersectionId: count}}
+   */
+  destinationStats() {
+    let results = {};
+    this.roads.forEach((road) => {
+      road.vehicles.forEach((vehicle) => {
+        let destination = vehicle.destinationId;
+        if (results[destination]) results[destination] += 1;
+        else results[destination] = 1;
+      });
+    });
+    return results;
+  }
 }
