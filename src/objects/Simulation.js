@@ -369,7 +369,7 @@ export default class Simulation {
 
   run() {
     this.update();
-    this.draw();
+    // this.draw();
   }
 
   /**
