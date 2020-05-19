@@ -29,19 +29,40 @@
     ></script>
   </head>
   <body>
-    <div class="content">
-      <!-- <div class="simulation">
-        <canvas class="js-canvas">
-        </canvas>
-      </div> -->
+    <div class="container mt-4 mb-2">
+      <div class="row">
+        <div class="col-12 col-sm-6 col-md-8">
+          <div id="map"></div>
+        </div>
+        <div class="col-6 col-md-4">
+          <div class="card bg-light mb-3">
+            <div class="card-header">Statistics</div>
+            <div class="card-body">
+              <h5 class="card-title text-center">Amount of the vehicles on the road:</h5>
+              <h2 class="text-center font-weight-bold">123</h2>
+              <hr />
+              <h5 class="card-title text-center">Average vehicle's velocity:</h5>
+              <h2 class="text-center font-weight-bold">123</h2>
+            </div>
+          </div>
 
-      <button id="step-btn" class="btn btn-outline-secondary btn-sm">Step</button>
-      <div class="simulation" id="sim-div"></div>
+          <div class="card bg-light mb-3">
+            <div class="card-body">
+              <div class="row text-center">
+                <div class="col">
+                  <button id="start-btn" class="btn btn-info" style="border-radius: 20px;">START</button>
+                </div>
+                <div class="col">
+                  <button id="stop-btn" class="btn btn-danger" style="border-radius: 20px;">STOP</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div id="map"></div>
     <!-- <div id="road-overview" class="container"></div> -->
-    <canvas id="canvas" width="1600" height="125"></canvas>
+    <canvas id="canvas" width="1600" height="125" class="mt-2"></canvas>
     <script src="../src/visualisation/sketch.js"></script>
     <script src="../src/index.js"></script>
   </body>

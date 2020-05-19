@@ -6,28 +6,35 @@ export default class Intersection {
    *  Intersection class for simulating traffic in Nagel-Schreckenberg model.
    *
    * @constructor
-   * @param {int} id                        Id of intersection
-   * @param {Road} inFirstRoad              Instance of first road in
-   * @param {Road} inSecondRoad             Instance of second road out
-   * @param {Road} outFirstRoad             Instance of first road in
-   * @param {Road} outSecondRoad            Instance of second road out
-   * @param {float} carsInput               Probability of car showing up at the intersection
-   * @param {String} name                   Name of the intersection
-   * @param {INTERSECTION_TYPES} lights      0- roundabout, 1 - red light, 2 - green light
+   * @param {numer} id                      - Id of intersection
+   * @param {number} lat                    - Latitude of the intersection
+   * @param {number} lng                    - Longitude of the intersection
+   * @param {Road} inFirstRoad              - Instance of first road in
+   * @param {Road} inSecondRoad             - Instance of second road out
+   * @param {Road} outFirstRoad             - Instance of first road in
+   * @param {Road} outSecondRoad            - Instance of second road out
+   * @param {float} carsInput               - Probability of car showing up at the intersection
+   * @param {String} name                   - Name of the intersection
+   * @param {number} lights                 - 0- roundabout, 1 - red light, 2 - green light
    * @param {int} lightsCounter
    */
   constructor(
-    id,
+    id = 0,
+    lat = 0,
+    lng = 0,
     inFirstRoad = null,
     inSecondRoad = null,
     outFirstRoad = null,
     outSecondRoad = null,
-    carsInput = null,
-    name = null,
-    lights = null,
-    lightsCounter = null
+    carsInput = 1.2,
+    name = 'A Intersection',
+    lights = 1,
+    lightsCounter = 10
   ) {
     this.id = id;
+
+    this.lat = lat;
+    this.lng = lng;
 
     this.inFirstRoad = inFirstRoad;
     this.inSecondRoad = inSecondRoad;
@@ -73,8 +80,8 @@ export default class Intersection {
    * @return void
    */
   changeLights() {
-    if (this.lights === 1) this.lights = 2;
-    else if (this.lights === 2) this.lights = 1;
+    if (this.lights === INTERSECTION_TYPES.RED_LIGHT) this.lights = INTERSECTION_TYPES.GREEN_LIGHT;
+    else if (this.lights === INTERSECTION_TYPES.GREEN_LIGHT) this.lights = INTERSECTION_TYPES.RED_LIGHT;
   }
 
   /**
@@ -86,7 +93,7 @@ export default class Intersection {
     let vehiclesNum;
     if (this.MAX_VEHICLES_PROCESSED < this.vehiclesToProcess.length) vehiclesNum = this.MAX_VEHICLES_PROCESSED;
     else {
-      if (this.lights !== 2) {
+      if (this.lights !== INTERSECTION_TYPES.GREEN_LIGHT) {
         let numOfVehicles = this.MAX_VEHICLES_PROCESSED - this.vehiclesToProcess.length;
 
         if (numOfVehicles > this.newVehicles.length) {

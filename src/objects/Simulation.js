@@ -10,14 +10,14 @@ export default class Simulation {
   /**
    * Simulation class used for managing traffic in Nagel-Schreckenberg model.
    *
-   * @property {Array<Vehicle>} vehicles            - Array of all the vehicles in current simulation.
    * @property {Array<Road>} roads                  - Array of all the roads in current simulation.
    * @property {Array<Intersection>} intersections  - Array of all the intersections in currenct simulations.
+   * @property {number} idCounter                   - Counter used to assign id for new vehicles.
    */
   constructor() {
-    this.vehicles = [];
     this.roads = [];
     this.intersections = [];
+    this.idCounter = 0;
 
     this.setUp();
   }
@@ -34,8 +34,8 @@ export default class Simulation {
     const r2_1 = new Road(100, 3, 10, 3);
     const r2_2 = new Road(100, 3, 10, 4);
 
-    const intersectionA = new Intersection(1, r1_1, r2_2, r1_2, r2_1, 1.2, 'A', INTERSECTION_TYPES.RED_LIGHT, 10);
-    const intersectionB = new Intersection(2, r2_1, r1_2, r2_2, r1_1, 1.2, 'B', INTERSECTION_TYPES.RED_LIGHT, 10);
+    const intersectionA = new Intersection(1, 0, 0, r1_1, r2_2, r1_2, r2_1, 1.2, 'A', INTERSECTION_TYPES.RED_LIGHT, 10);
+    const intersectionB = new Intersection(2, 1, 1, r2_1, r1_2, r2_2, r1_1, 1.2, 'B', INTERSECTION_TYPES.RED_LIGHT, 10);
 
     r1_1.setIntersection(intersectionA);
     r2_2.setIntersection(intersectionA);
@@ -327,15 +327,13 @@ export default class Simulation {
       while (intersection.inflowCoefficient >= 1) {
         let destinationId = Math.floor(Math.random() * NUM_OF_INTERSECTIONS);
         let velocity = Math.floor(Math.random() * 8);
-        let id = this.vehicles.length + 1;
+        let id = this.idCounter++;
 
         if (Math.random() < 0.75) {
           let vehicle = new Car(id, 0, 0, destinationId, velocity);
-          this.vehicles.push(vehicle);
           intersection.addNewVehicle(vehicle);
         } else {
           let vehicle = new Truck(id, 0, 0, destinationId, velocity);
-          this.vehicles.push(vehicle);
           intersection.addNewVehicle(vehicle);
         }
         intersection.inflowCoefficient--;
