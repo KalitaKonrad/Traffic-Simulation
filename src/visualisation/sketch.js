@@ -43,7 +43,11 @@ const visualize = (road) => {
   setInterval(() => drawVehicles(road), DRAW_INTERVAL);
 
   setTimeout(() => {
-    setInterval(() => clearCanvas(), DRAW_INTERVAL);
+    setInterval(() => {
+      clearCanvas();
+      document.getElementById('amount-info').innerText = sim.numberOfVehiclesOnRoads();
+      document.getElementById('avg-velo-info').innerText = Math.round(sim.averageVelocity() * 100) / 100;
+    }, DRAW_INTERVAL);
   }, DRAW_INTERVAL - 25);
 };
 

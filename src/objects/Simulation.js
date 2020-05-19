@@ -18,6 +18,7 @@ export default class Simulation {
     this.roads = [];
     this.intersections = [];
     this.idCounter = 0;
+    this.start = true;
 
     this.setUp();
   }
@@ -366,7 +367,16 @@ export default class Simulation {
   }
 
   run() {
-    this.update();
+    document.getElementById('start-btn').addEventListener('click', () => {
+      this.start = true;
+    });
+    document.getElementById('stop-btn').addEventListener('click', () => {
+      this.start = false;
+    });
+    if (this.start) {
+      this.update();
+    }
+
     // this.draw();
   }
 
