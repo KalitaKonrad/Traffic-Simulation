@@ -24,6 +24,10 @@ export default class Simulation {
     this.setUp();
   }
 
+  randomSetLights() {
+    return Math.random() > 0.5 ? INTERSECTION_TYPES.GREEN_LIGHT : INTERSECTION_TYPES.RED_LIGHT;
+  }
+
   /**
    * Method used for setting up model, creating roads and intersections
    *
@@ -90,7 +94,7 @@ export default class Simulation {
       r2_1,
       1.2,
       'Mistrzejowice',
-      INTERSECTION_TYPES.RED_LIGHT,
+      this.randomSetLights(),
       10
     );
     this.intersections.push(intersection1);
@@ -107,7 +111,7 @@ export default class Simulation {
       r3_1,
       1.2,
       'Czyzyny',
-      INTERSECTION_TYPES.RED_LIGHT,
+      this.randomSetLights(),
       10
     );
     this.intersections.push(intersection2);
@@ -141,7 +145,7 @@ export default class Simulation {
       r5_1,
       1.2,
       'Leg',
-      INTERSECTION_TYPES.RED_LIGHT,
+      this.randomSetLights(),
       10
     );
     this.intersections.push(intersection4);
@@ -158,7 +162,7 @@ export default class Simulation {
       r6_1,
       1.2,
       'Plaszow',
-      INTERSECTION_TYPES.RED_LIGHT,
+      this.randomSetLights(),
       10
     );
     this.intersections.push(intersection5);
@@ -175,7 +179,7 @@ export default class Simulation {
       r7_1,
       1.2,
       'Bagry',
-      INTERSECTION_TYPES.RED_LIGHT,
+      this.randomSetLights(),
       10
     );
     this.intersections.push(intersection6);
@@ -192,7 +196,7 @@ export default class Simulation {
       r8_1,
       1.2,
       'Kabel',
-      INTERSECTION_TYPES.RED_LIGHT,
+      this.randomSetLights(),
       10
     );
     this.intersections.push(intersection7);
@@ -209,7 +213,7 @@ export default class Simulation {
       r9_1,
       1.2,
       'Lagiewniki',
-      INTERSECTION_TYPES.RED_LIGHT,
+      this.randomSetLights(),
       10
     );
     this.intersections.push(intersection8);
@@ -226,7 +230,7 @@ export default class Simulation {
       r10_1,
       1.2,
       'Solvay',
-      INTERSECTION_TYPES.RED_LIGHT,
+      this.randomSetLights(),
       10
     );
     this.intersections.push(intersection9);
@@ -243,7 +247,7 @@ export default class Simulation {
       r11_1,
       1.2,
       'Ruczaj',
-      INTERSECTION_TYPES.RED_LIGHT,
+      this.randomSetLights(),
       10
     );
     this.intersections.push(intersection10);
@@ -260,7 +264,7 @@ export default class Simulation {
       r12_1,
       1.2,
       'Przegorzaly',
-      INTERSECTION_TYPES.RED_LIGHT,
+      this.randomSetLights(),
       10
     );
     this.intersections.push(intersection11);
@@ -277,7 +281,7 @@ export default class Simulation {
       r13_1,
       1.2,
       'Zarzecze',
-      INTERSECTION_TYPES.RED_LIGHT,
+      this.randomSetLights(),
       10
     );
     this.intersections.push(intersection12);
@@ -311,7 +315,7 @@ export default class Simulation {
       r15_1,
       1.2,
       'Wolbromski',
-      INTERSECTION_TYPES.RED_LIGHT,
+      this.randomSetLights(),
       10
     );
     this.intersections.push(intersection14);
@@ -328,7 +332,7 @@ export default class Simulation {
       r16_1,
       1.2,
       'Imbramowski',
-      INTERSECTION_TYPES.RED_LIGHT,
+      this.randomSetLights(),
       10
     );
     this.intersections.push(intersection15);
@@ -345,7 +349,7 @@ export default class Simulation {
       r1_1,
       1.2,
       'Polsadu',
-      INTERSECTION_TYPES.RED_LIGHT,
+      this.randomSetLights(),
       10
     );
     this.intersections.push(intersection16);
@@ -439,16 +443,33 @@ export default class Simulation {
   }
 
   run() {
-    document.getElementById('start-btn').addEventListener('click', () => {
+    let startBtn = document.getElementById('start-btn');
+    let stopBtn = document.getElementById('stop-btn');
+    let resetBtn = document.getElementById('reset-btn');
+
+    startBtn.addEventListener('click', () => {
       this.start = true;
     });
-    document.getElementById('stop-btn').addEventListener('click', () => {
+    stopBtn.addEventListener('click', () => {
       this.start = false;
     });
+
+    resetBtn.addEventListener('click', () => {
+      this.start = false;
+      this.roads = [];
+      this.intersections = [];
+      this.idCounter = 0;
+      this.setUp();
+    });
+
     if (this.start) {
       this.update();
+      startBtn.style.backgroundColor = '#2a9d8f';
+      stopBtn.style.backgroundColor = '#e63946';
+    } else {
+      startBtn.style.backgroundColor = '#2bcdbf';
+      stopBtn.style.backgroundColor = '#ad3743';
     }
-    // this.draw();
   }
 
   /**
