@@ -443,32 +443,8 @@ export default class Simulation {
   }
 
   run() {
-    let startBtn = document.getElementById('start-btn');
-    let stopBtn = document.getElementById('stop-btn');
-    let resetBtn = document.getElementById('reset-btn');
-
-    startBtn.addEventListener('click', () => {
-      this.start = true;
-    });
-    stopBtn.addEventListener('click', () => {
-      this.start = false;
-    });
-
-    resetBtn.addEventListener('click', () => {
-      this.start = false;
-      this.roads = [];
-      this.intersections = [];
-      this.idCounter = 0;
-      this.setUp();
-    });
-
     if (this.start) {
       this.update();
-      startBtn.style.backgroundColor = '#2a9d8f';
-      stopBtn.style.backgroundColor = '#e63946';
-    } else {
-      startBtn.style.backgroundColor = '#2bcdbf';
-      stopBtn.style.backgroundColor = '#ad3743';
     }
   }
 

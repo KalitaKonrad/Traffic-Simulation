@@ -1,5 +1,6 @@
 import main from './visualisation/Map';
-
+import MainController from './controllers/MainController';
+import Simulation from './objects/Simulation';
 ///////////////////// Leaflet map - visualization /////////////////////
 
 const CRACOW_LAT = 50.0647;
@@ -27,3 +28,16 @@ L.tileLayer(API_URL, {
 }).addTo(map);
 
 main();
+export const CONTROLLER = new MainController(new Simulation());
+
+CONTROLLER.startBtn.addEventListener('click', () => {
+  CONTROLLER.start();
+});
+
+CONTROLLER.stopBtn.addEventListener('click', () => {
+  CONTROLLER.stop();
+});
+
+CONTROLLER.resetBtn.addEventListener('click', () => {
+  CONTROLLER.reset();
+});

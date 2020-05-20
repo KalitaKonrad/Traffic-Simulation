@@ -1,9 +1,10 @@
 import Simulation from '../objects/Simulation';
+import { CONTROLLER } from '../index';
 import { selectedRoadIndex, onEdgeClick } from './Events';
 
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
-const sim = new Simulation();
+const sim = CONTROLLER.simulation;
 
 const WIDTH = canvas.width;
 const HEIGHT = canvas.height;
