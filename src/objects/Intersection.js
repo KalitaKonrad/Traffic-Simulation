@@ -6,14 +6,14 @@ export default class Intersection {
    *  Intersection class for simulating traffic in Nagel-Schreckenberg model.
    *
    * @constructor
-   * @param {numer} id                      - Id of intersection
+   * @param {number} id                     - Id of intersection
    * @param {number} lat                    - Latitude of the intersection
    * @param {number} lng                    - Longitude of the intersection
    * @param {Road} inFirstRoad              - Instance of first road in
    * @param {Road} inSecondRoad             - Instance of second road out
    * @param {Road} outFirstRoad             - Instance of first road in
    * @param {Road} outSecondRoad            - Instance of second road out
-   * @param {float} carsInput               - Probability of car showing up at the intersection
+   * @param {number} carsInput              - Probability of car showing up at the intersection
    * @param {String} name                   - Name of the intersection
    * @param {number} lights                 - 0- roundabout, 1 - red light, 2 - green light
    * @param {int} lightsCounter
