@@ -21,7 +21,7 @@
       integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
       crossorigin=""
     />
-
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script
       src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
       integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
@@ -39,10 +39,13 @@
             <div class="card-header">Statistics</div>
             <div class="card-body">
               <h5 class="card-title text-center">Amount of the vehicles on all roads:</h5>
-              <h2 id="amount-info" class="text-center font-weight-bold">123</h2>
+              <h2 id="amount-info" class="text-center font-weight-bold">0</h2>
               <hr />
               <h5 class="card-title text-center">Average vehicle's velocity:</h5>
-              <h2 id="avg-velo-info" class="text-center font-weight-bold">123</h2>
+              <h2 id="avg-velo-info" class="text-center font-weight-bold">0</h2>
+              <hr />
+              <h5 class="card-title text-center">Most popular intersections:</h5>
+              <div id="plot"></div>
             </div>
           </div>
 

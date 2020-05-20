@@ -10,7 +10,7 @@ export default class Road {
    * @param {int} velocityLimit           Speed Limit, max velocity on the entire road.
    * @param {int} id                      Road identifier.
    */
-  constructor(length = 100, width = 3, velocityLimit = 10, id = 0) {
+  constructor(length = 100, width = 3, velocityLimit = 3, id = 0) {
     this.length = length;
     this.width = width;
     this.velocityLimit = velocityLimit;

@@ -5,6 +5,7 @@ import Intersection from './Intersection';
 
 import { NUM_OF_INTERSECTIONS } from '../consts/simulation.const';
 import { INTERSECTION_TYPES } from '../consts/intersections.const';
+import { INTERSECTIONS } from '../consts/intersections.const';
 
 export default class Simulation {
   /**
@@ -29,76 +30,55 @@ export default class Simulation {
    * @return void
    */
   setUp() {
-    // const r1_1 = new Road(100, 3, 10, 1);
-    // const r1_2 = new Road(100, 3, 10, 2);
-    //
-    // const r2_1 = new Road(100, 3, 10, 3);
-    // const r2_2 = new Road(100, 3, 10, 4);
-    //
-    // const intersectionA = new Intersection(1, 0, 0, r1_1, r2_2, r1_2, r2_1, 1.2, 'A', INTERSECTION_TYPES.RED_LIGHT, 10);
-    // const intersectionB = new Intersection(2, 1, 1, r2_1, r1_2, r2_2, r1_1, 1.2, 'B', INTERSECTION_TYPES.RED_LIGHT, 10);
-    //
-    // r1_1.setIntersection(intersectionA);
-    // r2_2.setIntersection(intersectionA);
-    //
-    // r2_1.setIntersection(intersectionB);
-    // r1_2.setIntersection(intersectionB);
-    //
-    // this.intersections.push(intersectionA);
-    // this.intersections.push(intersectionB);
-    //
-    // this.roads.push(r1_1);
-    // this.roads.push(r1_2);
-    // this.roads.push(r2_1);
-    // this.roads.push(r2_2);
+    const VELOCITY = 3;
 
-    const r1_1 = new Road(290, 3, 10, 1);
-    const r1_2 = new Road(290, 3, 10, 2);
+    const r1_1 = new Road(290, 3, VELOCITY, 1);
+    const r1_2 = new Road(290, 3, VELOCITY, 2);
 
-    const r2_1 = new Road(235, 3, 10, 3);
-    const r2_2 = new Road(235, 3, 10, 4);
+    const r2_1 = new Road(235, 3, VELOCITY, 3);
+    const r2_2 = new Road(235, 3, VELOCITY, 4);
 
-    const r3_1 = new Road(105, 3, 10, 5);
-    const r3_2 = new Road(105, 3, 10, 6);
+    const r3_1 = new Road(105, 3, VELOCITY, 5);
+    const r3_2 = new Road(105, 3, VELOCITY, 6);
 
-    const r4_1 = new Road(200, 3, 10, 7);
-    const r4_2 = new Road(200, 3, 10, 8);
+    const r4_1 = new Road(200, 3, VELOCITY, 7);
+    const r4_2 = new Road(200, 3, VELOCITY, 8);
 
-    const r5_1 = new Road(100, 3, 10, 9);
-    const r5_2 = new Road(100, 3, 10, 10);
+    const r5_1 = new Road(100, 3, VELOCITY, 9);
+    const r5_2 = new Road(100, 3, VELOCITY, 10);
 
-    const r6_1 = new Road(160, 3, 10, 11);
-    const r6_2 = new Road(160, 3, 10, 12);
+    const r6_1 = new Road(160, 3, VELOCITY, 11);
+    const r6_2 = new Road(160, 3, VELOCITY, 12);
 
-    const r7_1 = new Road(100, 3, 10, 13);
-    const r7_2 = new Road(100, 3, 10, 14);
+    const r7_1 = new Road(100, 3, VELOCITY, 13);
+    const r7_2 = new Road(100, 3, VELOCITY, 14);
 
-    const r8_1 = new Road(420, 3, 10, 15);
-    const r8_2 = new Road(420, 3, 10, 16);
+    const r8_1 = new Road(420, 3, VELOCITY, 15);
+    const r8_2 = new Road(420, 3, VELOCITY, 16);
 
-    const r9_1 = new Road(155, 3, 10, 17);
-    const r9_2 = new Road(155, 3, 10, 18);
+    const r9_1 = new Road(155, 3, VELOCITY, 17);
+    const r9_2 = new Road(155, 3, VELOCITY, 18);
 
-    const r10_1 = new Road(230, 3, 10, 19);
-    const r10_2 = new Road(230, 3, 10, 20);
+    const r10_1 = new Road(230, 3, VELOCITY, 19);
+    const r10_2 = new Road(230, 3, VELOCITY, 20);
 
-    const r11_1 = new Road(300, 3, 10, 21);
-    const r11_2 = new Road(300, 3, 10, 22);
+    const r11_1 = new Road(300, 3, VELOCITY, 21);
+    const r11_2 = new Road(300, 3, VELOCITY, 22);
 
-    const r12_1 = new Road(370, 3, 10, 23);
-    const r12_2 = new Road(370, 3, 10, 24);
+    const r12_1 = new Road(370, 3, VELOCITY, 23);
+    const r12_2 = new Road(370, 3, VELOCITY, 24);
 
-    const r13_1 = new Road(180, 3, 10, 25);
-    const r13_2 = new Road(180, 3, 10, 26);
+    const r13_1 = new Road(180, 3, VELOCITY, 25);
+    const r13_2 = new Road(180, 3, VELOCITY, 26);
 
-    const r14_1 = new Road(420, 3, 10, 27);
-    const r14_2 = new Road(420, 3, 10, 28);
+    const r14_1 = new Road(420, 3, VELOCITY, 27);
+    const r14_2 = new Road(420, 3, VELOCITY, 28);
 
-    const r15_1 = new Road(200, 3, 10, 29);
-    const r15_2 = new Road(200, 3, 10, 30);
+    const r15_1 = new Road(200, 3, VELOCITY, 29);
+    const r15_2 = new Road(200, 3, VELOCITY, 30);
 
-    const r16_1 = new Road(250, 3, 10, 31);
-    const r16_2 = new Road(250, 3, 10, 32);
+    const r16_1 = new Road(250, 3, VELOCITY, 31);
+    const r16_2 = new Road(250, 3, VELOCITY, 32);
 
     const intersection1 = new Intersection(
       1,
@@ -391,6 +371,25 @@ export default class Simulation {
   }
 
   /**
+   * Method used to add new Vehicle to chosen intersection.
+   *
+   * @param intersectionId
+   */
+  addVehicleToIntersection(intersectionId) {
+    let destinationId = Math.floor(Math.random() * NUM_OF_INTERSECTIONS);
+    let velocity = Math.floor(Math.random() * 8);
+    let id = this.idCounter++;
+
+    if (Math.random() < 0.75) {
+      let vehicle = new Car(id, 0, 0, destinationId, velocity);
+      this.intersections[intersectionId].addNewVehicle(vehicle);
+    } else {
+      let vehicle = new Truck(id, 0, 0, destinationId, velocity);
+      this.intersections[intersectionId].addNewVehicle(vehicle);
+    }
+  }
+
+  /**
    * Method used for generating vehicles; cars or trucks
    *
    * @return void
@@ -480,14 +479,15 @@ export default class Simulation {
    * @returns {{IntersectionId: count}}
    */
   destinationStats() {
-    let results = {};
+    let results = [['Intersection', 'Amount']];
     this.roads.forEach((road) => {
       road.vehicles.forEach((vehicle) => {
         let destination = vehicle.destinationId;
-        if (results[destination]) results[destination] += 1;
-        else results[destination] = 1;
+        if (results[destination]) results[destination][1] += 1;
+        else results[destination] = [INTERSECTIONS[destination + 1], 1];
       });
     });
+    console.log(results);
     return results;
   }
 }

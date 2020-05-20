@@ -46,7 +46,20 @@ const visualize = (road) => {
     setInterval(() => {
       clearCanvas();
       document.getElementById('amount-info').innerText = sim.numberOfVehiclesOnRoads();
-      document.getElementById('avg-velo-info').innerText = Math.round(sim.averageVelocity() * 100) / 100;
+      document.getElementById('avg-velo-info').innerText = Math.round(sim.averageVelocity() * 7.5 * 360) / 100;
+
+      const drawChart = () => {
+        let data = google.visualization.arrayToDataTable(sim.destinationStats());
+        let options = {
+          backgroundColor: 'transparent',
+        };
+
+        let chart = new google.visualization.PieChart(document.getElementById('plot'));
+
+        chart.draw(data, options);
+      };
+      google.charts.load('current', { packages: ['corechart'] });
+      google.charts.setOnLoadCallback(drawChart);
     }, DRAW_INTERVAL);
   }, DRAW_INTERVAL - 25);
 };
