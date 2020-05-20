@@ -58,47 +58,47 @@ export default class Simulation {
     const r2_1 = new Road(235, 3, 10, 3);
     const r2_2 = new Road(235, 3, 10, 4);
 
-    const r3_1 = new Road(105, 3, 10, 3);
-    const r3_2 = new Road(105, 3, 10, 4);
+    const r3_1 = new Road(105, 3, 10, 5);
+    const r3_2 = new Road(105, 3, 10, 6);
 
-    const r4_1 = new Road(200, 3, 10, 3);
-    const r4_2 = new Road(200, 3, 10, 4);
+    const r4_1 = new Road(200, 3, 10, 7);
+    const r4_2 = new Road(200, 3, 10, 8);
 
-    const r5_1 = new Road(100, 3, 10, 3);
-    const r5_2 = new Road(100, 3, 10, 4);
+    const r5_1 = new Road(100, 3, 10, 9);
+    const r5_2 = new Road(100, 3, 10, 10);
 
-    const r6_1 = new Road(160, 3, 10, 3);
-    const r6_2 = new Road(160, 3, 10, 4);
+    const r6_1 = new Road(160, 3, 10, 11);
+    const r6_2 = new Road(160, 3, 10, 12);
 
-    const r7_1 = new Road(100, 3, 10, 3);
-    const r7_2 = new Road(100, 3, 10, 4);
+    const r7_1 = new Road(100, 3, 10, 13);
+    const r7_2 = new Road(100, 3, 10, 14);
 
-    const r8_1 = new Road(420, 3, 10, 3);
-    const r8_2 = new Road(420, 3, 10, 4);
+    const r8_1 = new Road(420, 3, 10, 15);
+    const r8_2 = new Road(420, 3, 10, 16);
 
-    const r9_1 = new Road(155, 3, 10, 3);
-    const r9_2 = new Road(155, 3, 10, 4);
+    const r9_1 = new Road(155, 3, 10, 17);
+    const r9_2 = new Road(155, 3, 10, 18);
 
-    const r10_1 = new Road(230, 3, 10, 3);
-    const r10_2 = new Road(230, 3, 10, 4);
+    const r10_1 = new Road(230, 3, 10, 19);
+    const r10_2 = new Road(230, 3, 10, 20);
 
-    const r11_1 = new Road(300, 3, 10, 3);
-    const r11_2 = new Road(300, 3, 10, 4);
+    const r11_1 = new Road(300, 3, 10, 21);
+    const r11_2 = new Road(300, 3, 10, 22);
 
-    const r12_1 = new Road(370, 3, 10, 3);
-    const r12_2 = new Road(370, 3, 10, 4);
+    const r12_1 = new Road(370, 3, 10, 23);
+    const r12_2 = new Road(370, 3, 10, 24);
 
-    const r13_1 = new Road(180, 3, 10, 3);
-    const r13_2 = new Road(180, 3, 10, 4);
+    const r13_1 = new Road(180, 3, 10, 25);
+    const r13_2 = new Road(180, 3, 10, 26);
 
-    const r14_1 = new Road(420, 3, 10, 3);
-    const r14_2 = new Road(420, 3, 10, 4);
+    const r14_1 = new Road(420, 3, 10, 27);
+    const r14_2 = new Road(420, 3, 10, 28);
 
-    const r15_1 = new Road(200, 3, 10, 3);
-    const r15_2 = new Road(200, 3, 10, 4);
+    const r15_1 = new Road(200, 3, 10, 29);
+    const r15_2 = new Road(200, 3, 10, 30);
 
-    const r16_1 = new Road(250, 3, 10, 3);
-    const r16_2 = new Road(250, 3, 10, 4);
+    const r16_1 = new Road(250, 3, 10, 31);
+    const r16_2 = new Road(250, 3, 10, 32);
 
     const intersection1 = new Intersection(
       1,
