@@ -20,6 +20,7 @@ export default class Simulation {
     this.intersections = [];
     this.idCounter = 0;
     this.start = true;
+    this.INFLOW_CEOF = 0;
 
     this.setUp();
   }
@@ -92,7 +93,7 @@ export default class Simulation {
       r2_2,
       r1_2,
       r2_1,
-      1.2,
+      this.INFLOW_CEOF,
       'Mistrzejowice',
       this.randomSetLights(),
       10
@@ -109,7 +110,7 @@ export default class Simulation {
       r3_2,
       r2_2,
       r3_1,
-      1.2,
+      this.INFLOW_CEOF,
       'Czyzyny',
       this.randomSetLights(),
       10
@@ -126,7 +127,7 @@ export default class Simulation {
       r4_2,
       r3_2,
       r4_1,
-      1.2,
+      this.INFLOW_CEOF,
       'Dywizjonu 308',
       INTERSECTION_TYPES.ROUNDABOUT,
       10
@@ -143,7 +144,7 @@ export default class Simulation {
       r5_2,
       r4_2,
       r5_1,
-      1.2,
+      this.INFLOW_CEOF,
       'Leg',
       this.randomSetLights(),
       10
@@ -160,7 +161,7 @@ export default class Simulation {
       r6_2,
       r5_2,
       r6_1,
-      1.2,
+      this.INFLOW_CEOF,
       'Plaszow',
       this.randomSetLights(),
       10
@@ -177,7 +178,7 @@ export default class Simulation {
       r7_2,
       r6_2,
       r7_1,
-      1.2,
+      this.INFLOW_CEOF,
       'Bagry',
       this.randomSetLights(),
       10
@@ -194,7 +195,7 @@ export default class Simulation {
       r8_2,
       r7_2,
       r8_1,
-      1.2,
+      this.INFLOW_CEOF,
       'Kabel',
       this.randomSetLights(),
       10
@@ -211,7 +212,7 @@ export default class Simulation {
       r9_2,
       r8_2,
       r9_1,
-      1.2,
+      this.INFLOW_CEOF,
       'Lagiewniki',
       this.randomSetLights(),
       10
@@ -228,7 +229,7 @@ export default class Simulation {
       r10_2,
       r9_2,
       r10_1,
-      1.2,
+      this.INFLOW_CEOF,
       'Solvay',
       this.randomSetLights(),
       10
@@ -245,7 +246,7 @@ export default class Simulation {
       r11_2,
       r10_2,
       r11_1,
-      1.2,
+      this.INFLOW_CEOF,
       'Ruczaj',
       this.randomSetLights(),
       10
@@ -262,7 +263,7 @@ export default class Simulation {
       r12_2,
       r11_2,
       r12_1,
-      1.2,
+      this.INFLOW_CEOF,
       'Przegorzaly',
       this.randomSetLights(),
       10
@@ -279,7 +280,7 @@ export default class Simulation {
       r13_2,
       r12_2,
       r13_1,
-      1.2,
+      this.INFLOW_CEOF,
       'Zarzecze',
       this.randomSetLights(),
       10
@@ -296,7 +297,7 @@ export default class Simulation {
       r14_2,
       r13_2,
       r14_1,
-      1.2,
+      this.INFLOW_CEOF,
       'Ofiar Katynia',
       INTERSECTION_TYPES.ROUNDABOUT,
       10
@@ -313,7 +314,7 @@ export default class Simulation {
       r15_2,
       r14_2,
       r15_1,
-      1.2,
+      this.INFLOW_CEOF,
       'Wolbromski',
       this.randomSetLights(),
       10
@@ -330,7 +331,7 @@ export default class Simulation {
       r16_2,
       r15_2,
       r16_1,
-      1.2,
+      this.INFLOW_CEOF,
       'Imbramowski',
       this.randomSetLights(),
       10
@@ -347,7 +348,7 @@ export default class Simulation {
       r1_2,
       r16_2,
       r1_1,
-      1.2,
+      this.INFLOW_CEOF,
       'Polsadu',
       this.randomSetLights(),
       10
@@ -484,7 +485,14 @@ export default class Simulation {
         else results[destination] = [INTERSECTIONS[destination + 1], 1];
       });
     });
-    console.log(results);
     return results;
+  }
+
+  changeInflow(value) {
+    this.INFLOW_CEOF = value;
+    this.intersections.forEach((intersection) => {
+      intersection.inflowCoefficient = this.INFLOW_CEOF;
+      intersection.carsInput = this.INFLOW_CEOF;
+    });
   }
 }

@@ -41,3 +41,12 @@ CONTROLLER.stopBtn.addEventListener('click', () => {
 CONTROLLER.resetBtn.addEventListener('click', () => {
   CONTROLLER.reset();
 });
+
+let slider = document.getElementById('myRange');
+let output = document.getElementById('myRange-output');
+output.innerHTML = slider.value / 100;
+
+slider.oninput = function () {
+  output.innerHTML = this.value / 100;
+  CONTROLLER.changeIntersectionsInflow(this.value);
+};

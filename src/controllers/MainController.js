@@ -36,4 +36,8 @@ export default class MainController {
     this.simulation.setUp();
     this.check();
   }
+
+  changeIntersectionsInflow(value) {
+    this.simulation.changeInflow(value / 100);
+  }
 }
