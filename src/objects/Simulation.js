@@ -21,7 +21,7 @@ export default class Simulation {
     this.idCounter = 0;
     this.start = true;
     this.INFLOW_CEOF = 0;
-    this.selectedRoadId = 0;
+    this.selectedRoadId = 1;
 
     this.setUp();
   }
@@ -498,6 +498,7 @@ export default class Simulation {
   }
 
   setSelectedRoadId(e) {
-    console.log(e);
+    const road = e.sourceTarget;
+    this.selectedRoadId = road.id;
   }
 }

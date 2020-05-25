@@ -1,4 +1,3 @@
-import Simulation from '../objects/Simulation';
 import { CONTROLLER } from '../index';
 
 const canvas = document.getElementById('canvas');
@@ -38,9 +37,12 @@ const drawVehicles = (road) => {
  *
  * @param {Road} road - object representing road.
  */
-const visualize = (road) => {
+const visualize = () => {
   setInterval(sim.run.bind(sim), DRAW_INTERVAL);
-  setInterval(() => drawVehicles(road), DRAW_INTERVAL);
+  setInterval(() => {
+    const road = sim.roads[sim.selectedRoadId];
+    drawVehicles(road);
+  }, DRAW_INTERVAL);
 
   setTimeout(() => {
     setInterval(() => {
@@ -64,4 +66,4 @@ const visualize = (road) => {
   }, DRAW_INTERVAL - 25);
 };
 
-visualize(sim.roads[0]);
+visualize();

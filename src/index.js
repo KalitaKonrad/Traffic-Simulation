@@ -28,7 +28,7 @@ L.tileLayer(API_URL, {
 
 export const CONTROLLER = new MainController(new Simulation());
 
-import('./visualisation/sketch');
+import('./visualisation/sketch').then((module) => {});
 import('./visualisation/Map').then((module) => module.default());
 
 CONTROLLER.startBtn.addEventListener('click', () => {
