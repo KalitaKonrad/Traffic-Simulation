@@ -1,4 +1,3 @@
-import main from './visualisation/Map';
 import MainController from './controllers/MainController';
 import Simulation from './objects/Simulation';
 ///////////////////// Leaflet map - visualization /////////////////////
@@ -27,8 +26,10 @@ L.tileLayer(API_URL, {
   maxZoom: 19,
 }).addTo(map);
 
-main();
 export const CONTROLLER = new MainController(new Simulation());
+
+import('./visualisation/sketch');
+import('./visualisation/Map').then((module) => module.default());
 
 CONTROLLER.startBtn.addEventListener('click', () => {
   CONTROLLER.start();

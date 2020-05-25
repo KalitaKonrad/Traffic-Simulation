@@ -21,6 +21,7 @@ export default class Simulation {
     this.idCounter = 0;
     this.start = true;
     this.INFLOW_CEOF = 0;
+    this.selectedRoadId = 0;
 
     this.setUp();
   }
@@ -494,5 +495,9 @@ export default class Simulation {
       intersection.inflowCoefficient = this.INFLOW_CEOF;
       intersection.carsInput = this.INFLOW_CEOF;
     });
+  }
+
+  setSelectedRoadId(e) {
+    console.log(e);
   }
 }

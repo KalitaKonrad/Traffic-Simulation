@@ -1,6 +1,5 @@
 import Simulation from '../objects/Simulation';
 import { CONTROLLER } from '../index';
-import { selectedRoadIndex, onEdgeClick } from './Events';
 
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
@@ -65,4 +64,4 @@ const visualize = (road) => {
   }, DRAW_INTERVAL - 25);
 };
 
-visualize(sim.roads[selectedRoadIndex]);
+visualize(sim.roads[0]);

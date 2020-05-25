@@ -1,5 +1,6 @@
-import { map } from '../index';
-import { onEdgeClick, onPointHover } from './Events';
+import { map, CONTROLLER } from '../index';
+
+const sim = CONTROLLER.simulation;
 
 export class Point {
   /**
@@ -46,7 +47,7 @@ const generateEdges = (intersectionPoints, roads) => {
     road.point_from = firstPoint;
     road.point_to = secondPoint;
 
-    road.on('click', onEdgeClick);
+    road.on('click', (e) => sim.setSelectedRoadId(e));
     roads.push(road);
   }
 
@@ -63,7 +64,7 @@ const generateEdges = (intersectionPoints, roads) => {
   lastRoad.id = intersectionPoints.length - 1;
   lastRoad.point_from = intersectionPoints[arrLength - 1];
   lastRoad.point_to = intersectionPoints[0];
-  lastRoad.on('click', onEdgeClick);
+  lastRoad.on('click', (e) => sim.setSelectedRoadId(e));
   roads.push(lastRoad);
 };
 
@@ -104,7 +105,7 @@ const generateIntersections = (intersectionPoints) => {
     point['marker'] = L.marker([point.lat, point.lng], {
       icon: point.isRoundabout ? roundaboutIcon : intersectionIcon,
     }).addTo(map);
-    point['marker'].on('mouseover', onPointHover);
+    point['marker'].on('mouseover', (e) => e.sourceTarget.togglePopup());
     point['marker'].bindPopup(`Name: ${point.name}`);
   });
 };
