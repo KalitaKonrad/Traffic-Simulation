@@ -383,16 +383,30 @@ export default class Simulation {
    */
   addVehicleToIntersection(intersectionId) {
     let destinationId = Math.floor(Math.random() * NUM_OF_INTERSECTIONS);
-    let velocity = Math.floor(Math.random() * 8);
+    let maxVelo = this.getRandomVelocity();
+    let velocity = Math.floor(Math.random() * maxVelo);
     let id = this.idCounter++;
 
     if (Math.random() < 0.75) {
-      let vehicle = new Car(id, 0, 0, destinationId, velocity);
+      let vehicle = new Car(id, 0, 0, destinationId, velocity, maxVelo);
       this.intersections[intersectionId].addNewVehicle(vehicle);
     } else {
-      let vehicle = new Truck(id, 0, 0, destinationId, velocity);
+      let vehicle = new Truck(id, 0, 0, destinationId, velocity, maxVelo);
       this.intersections[intersectionId].addNewVehicle(vehicle);
     }
+  }
+
+  /**
+   * Method used for generate random velocity for Vehicle
+   * from range from [1, MAX_VEHICLE]
+   *
+   * @return number
+   */
+  getRandomVelocity() {
+    const prob = Math.random();
+    if (prob > 0.8) return 1;
+    else if (prob > 0.5) return 2;
+    return 3;
   }
 
   /**
@@ -405,14 +419,15 @@ export default class Simulation {
       intersection.inflowCoefficient += intersection.carsInput;
       while (intersection.inflowCoefficient >= 1) {
         let destinationId = Math.floor(Math.random() * NUM_OF_INTERSECTIONS);
-        let velocity = Math.floor(Math.random() * 8);
+        let maxVelo = this.getRandomVelocity();
+        let velocity = Math.floor(Math.random() * maxVelo);
         let id = this.idCounter++;
 
         if (Math.random() < 0.75) {
-          let vehicle = new Car(id, 0, 0, destinationId, velocity);
+          let vehicle = new Car(id, 0, 0, destinationId, velocity, maxVelo);
           intersection.addNewVehicle(vehicle);
         } else {
-          let vehicle = new Truck(id, 0, 0, destinationId, velocity);
+          let vehicle = new Truck(id, 0, 0, destinationId, velocity, maxVelo);
           intersection.addNewVehicle(vehicle);
         }
         intersection.inflowCoefficient--;
