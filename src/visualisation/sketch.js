@@ -1,20 +1,22 @@
 import { CONTROLLER } from '../index';
+import { VEHICLE_COLOR } from '../consts/vehicles.const';
 
 const canvas = document.getElementById('canvas');
+const canvasSecond = document.getElementById('canvas-backward');
 const ctx = canvas.getContext('2d');
+const ctxSecond = canvasSecond.getContext('2d');
 const sim = CONTROLLER.simulation;
 
 const WIDTH = canvas.width;
 const HEIGHT = canvas.height;
-const VEHICLE_SIZE_X = 15;
-const VEHICLE_SIZE_Y = 15;
+const VEHICLE_SIZE_X = 14;
+const VEHICLE_SIZE_Y = 14;
 const DRAW_INTERVAL = 700;
-ctx.fillStyle = 'red';
 
 /**
  * Clears whole canvas.
  */
-const clearCanvas = () => {
+const clearCanvas = (ctx) => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 };
 
@@ -23,13 +25,21 @@ const clearCanvas = () => {
  *
  * @param {Road} road - object representing road.
  */
-const drawVehicles = (road) => {
+const drawVehicles = (road, ctx, isForward) => {
   const xWidth = WIDTH / road.length;
   const yHeight = HEIGHT / road.width - 15;
 
-  road.vehicles.forEach((vehicle) => {
-    ctx.fillRect(xWidth * vehicle.x, yHeight * (vehicle.y + 1), VEHICLE_SIZE_X, VEHICLE_SIZE_Y);
-  });
+  if (isForward) {
+    road.vehicles.forEach((vehicle) => {
+      ctx.fillStyle = VEHICLE_COLOR[vehicle.velocity];
+      ctx.fillRect(xWidth * vehicle.x, yHeight * (vehicle.y + 1), VEHICLE_SIZE_X, VEHICLE_SIZE_Y);
+    });
+  } else {
+    road.vehicles.forEach((vehicle) => {
+      ctx.fillStyle = VEHICLE_COLOR[vehicle.velocity];
+      ctx.fillRect(WIDTH - xWidth * vehicle.x, yHeight * (vehicle.y + 1), VEHICLE_SIZE_X, VEHICLE_SIZE_Y);
+    });
+  }
 };
 
 /**
@@ -40,13 +50,16 @@ const drawVehicles = (road) => {
 const visualize = () => {
   setInterval(sim.run.bind(sim), DRAW_INTERVAL);
   setInterval(() => {
-    const road = sim.roads[sim.selectedRoadId];
-    drawVehicles(road);
+    const roadForward = sim.roads[2 * sim.selectedRoadId - 1];
+    const roadBackward = sim.roads[2 * sim.selectedRoadId];
+    drawVehicles(roadForward, ctx, true);
+    drawVehicles(roadBackward, ctxSecond, false);
   }, DRAW_INTERVAL);
 
   setTimeout(() => {
     setInterval(() => {
-      clearCanvas();
+      clearCanvas(ctx);
+      clearCanvas(ctxSecond);
       document.getElementById('amount-info').innerText = sim.numberOfVehiclesOnRoads();
       document.getElementById('avg-velo-info').innerText = Math.round(sim.averageVelocity() * 7.5 * 360) / 100;
       document.getElementById('avg-inflow').innerText = Math.round(sim.averageInflow() * 100) / 100;

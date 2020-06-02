@@ -211,8 +211,13 @@
         </div>
       </div>
     </div>
-    <!-- <div id="road-overview" class="container"></div> -->
-    <canvas id="canvas" width="1600" height="125" class="mt-2"></canvas>
+
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <!-- Road forward -->
+      <canvas id="canvas" width="1600" height="125" class="mt-2"></canvas>
+      <!-- Road backward -->
+      <canvas id="canvas-backward" width="1600" height="125" class="mt-2"></canvas>
+    </div>
     <script src="../src/index.js"></script>
   </body>
 </html>

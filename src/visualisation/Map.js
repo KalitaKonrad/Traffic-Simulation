@@ -43,7 +43,7 @@ const generateEdges = (intersectionPoints, roads) => {
     ).addTo(map);
 
     // attach additional data to road
-    road.id = i;
+    road.id = i + 1;
     road.point_from = firstPoint;
     road.point_to = secondPoint;
 
