@@ -2,14 +2,16 @@
 
 docs: https://github.com/KalitaKonrad/SDSZ-Obwodnica-lll/blob/docs/docs/Symulacja_ruchu_drogowego.pdf
 
-Plan projektu:
+## Plan projektu:
 
 - [x] Sformułowanie problemu.
 - [x] Analiza dostępnych rozwiązań.
-- [ ] Budowa algorytmu i modelu matematycznego.
-- [ ] Implementacja w języku JavaScript.
-- [ ] Implementacja animacji.
+- [x] Budowa algorytmu i modelu matematycznego.
+- [x] Implementacja w języku JavaScript.
+- [x] Implementacja animacji.
 - [ ] Analiza i ocena poprawności wyników.
+
+![ss1](./public/assets/ss1.png)
 
 ## Project setup
 
