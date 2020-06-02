@@ -512,6 +512,19 @@ export default class Simulation {
     });
   }
 
+  changeInflowAtIntersection(id, value) {
+    this.intersections[id - 1].inflowCoefficient = value;
+    this.intersections[id - 1].carsInput = value;
+  }
+
+  averageInflow() {
+    let avg = 0;
+    this.intersections.forEach((intersection) => {
+      avg += intersection.carsInput;
+    });
+    return avg / this.intersections.length;
+  }
+
   setSelectedRoadId(e) {
     const road = e.sourceTarget;
     this.selectedRoadId = road.id;

@@ -43,11 +43,11 @@ CONTROLLER.resetBtn.addEventListener('click', () => {
   CONTROLLER.reset();
 });
 
-let slider = document.getElementById('myRange');
-let output = document.getElementById('myRange-output');
-output.innerHTML = slider.value / 100;
-
-slider.oninput = function () {
-  output.innerHTML = this.value / 100;
-  CONTROLLER.changeIntersectionsInflow(this.value);
-};
+for (let i = 1; i <= 16; i++) {
+  let slider = document.getElementById(`slider${i}`);
+  let output = document.getElementById(`slider${i}-output`);
+  slider.oninput = function () {
+    output.innerHTML = this.value / 100;
+    CONTROLLER.changeIntersectionInflow(i, this.value);
+  };
+}

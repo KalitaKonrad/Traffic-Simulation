@@ -49,6 +49,7 @@ const visualize = () => {
       clearCanvas();
       document.getElementById('amount-info').innerText = sim.numberOfVehiclesOnRoads();
       document.getElementById('avg-velo-info').innerText = Math.round(sim.averageVelocity() * 7.5 * 360) / 100;
+      document.getElementById('avg-inflow').innerText = Math.round(sim.averageInflow() * 100) / 100;
 
       const drawChart = () => {
         let data = google.visualization.arrayToDataTable(sim.destinationStats());

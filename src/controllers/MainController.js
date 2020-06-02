@@ -1,6 +1,7 @@
 export default class MainController {
   constructor(simulation) {
     this.simulation = simulation;
+    this.simulation.changeInflow(0.8);
     this.setUp();
   }
   setUp() {
@@ -39,5 +40,9 @@ export default class MainController {
 
   changeIntersectionsInflow(value) {
     this.simulation.changeInflow(value / 100);
+  }
+
+  changeIntersectionInflow(id, value) {
+    this.simulation.changeInflowAtIntersection(id, value / 100);
   }
 }
