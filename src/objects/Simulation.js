@@ -504,6 +504,47 @@ export default class Simulation {
     return results;
   }
 
+  getAmoutOfVehiclesOnRoad(roadId) {
+    let ids = [];
+    if (roadId === 16) {
+      ids.push(0, 1);
+    } else {
+      ids.push(roadId * 2, roadId * 2 + 1);
+    }
+
+    let roadA = this.roads[ids[0]];
+    let roadB = this.roads[ids[1]];
+
+    let result = 0;
+    result += roadA.vehicles.length;
+    result += roadB.vehicles.length;
+
+    return result;
+  }
+
+  getAvgVelocityOnRoad(roadId) {
+    let ids = [];
+    if (roadId === 16) {
+      ids.push(0, 1);
+    } else {
+      ids.push(roadId * 2, roadId * 2 + 1);
+    }
+
+    let roadA = this.roads[ids[0]];
+    let roadB = this.roads[ids[1]];
+
+    let result = 0;
+    roadA.vehicles.forEach((vehicle) => {
+      result += vehicle.velocity;
+    });
+
+    roadB.vehicles.forEach((vehicle) => {
+      result += vehicle.velocity;
+    });
+
+    return result / (roadA.vehicles.length + roadB.vehicles.length);
+  }
+
   changeInflow(value) {
     this.INFLOW_CEOF = value;
     this.intersections.forEach((intersection) => {

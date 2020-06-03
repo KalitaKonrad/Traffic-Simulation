@@ -64,6 +64,9 @@ const visualize = () => {
       document.getElementById('avg-velo-info').innerText = Math.round(sim.averageVelocity() * 7.5 * 360) / 100;
       document.getElementById('avg-inflow').innerText = Math.round(sim.averageInflow() * 100) / 100;
 
+      document.getElementById('road-amount').innerHTML = sim.getAmoutOfVehiclesOnRoad(CONTROLLER.CURRENT_ROAD);
+      document.getElementById('road-avg').innerHTML =
+        Math.round(sim.getAvgVelocityOnRoad(CONTROLLER.CURRENT_ROAD) * 7.5 * 360) / 100 || 0;
       const drawChart = () => {
         let data = google.visualization.arrayToDataTable(sim.destinationStats());
         let options = {

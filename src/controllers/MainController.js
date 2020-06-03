@@ -2,6 +2,7 @@ export default class MainController {
   constructor(simulation) {
     this.simulation = simulation;
     this.simulation.changeInflow(0.8);
+    this.CURRENT_ROAD = 1;
     this.setUp();
   }
   setUp() {

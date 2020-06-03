@@ -1,4 +1,5 @@
 import { map, CONTROLLER } from '../index';
+import { DISTANCES } from '../consts/intersections.const';
 
 const sim = CONTROLLER.simulation;
 
@@ -119,6 +120,10 @@ const onRoadClick = (e) => {
   const destBwdL = document.getElementById('dest-backward-left');
   const destBwdR = document.getElementById('dest-backward-right');
 
+  const srcIntHeader = document.getElementById('src-intersection-header');
+  const destIntHeader = document.getElementById('dest-intersection-header');
+  const distanceBetweenInts = document.getElementById('distance-between');
+
   const fwdIntersection = sim.intersections.filter((intersection) => intersection.id === roadId)[0];
   const bwdIntersection = sim.intersections.filter(
     (intersection) => intersection.id === (roadId + 1) % sim.intersections.length
@@ -133,6 +138,14 @@ const onRoadClick = (e) => {
 
   destBwdL.innerText = bwdIntersection.name;
   destBwdR.innerText = fwdIntersection.name;
+
+  // roads stats header
+
+  srcIntHeader.innerHTML = fwdIntersection.name;
+  destIntHeader.innerHTML = bwdIntersection.name;
+  distanceBetweenInts.innerHTML = DISTANCES[roadId];
+
+  CONTROLLER.CURRENT_ROAD = roadId;
 };
 
 /**

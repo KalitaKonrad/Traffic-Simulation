@@ -69,161 +69,192 @@
             </div>
           </div>
         </div>
-        <div class="col-12 col-md-12">
-          <div class="card bg-light mb-3">
-            <div class="card-header">
-              <span class="font-weight-bold">Average inflow coefficient:</span>
-              <span id="avg-inflow">0.8</span>
+
+        <div class="row">
+          <div class="col-12 col-md-12">
+            <div class="card bg-light mb-3">
+              <div class="card-header text-center">
+                <span class="font-weight-bold"
+                  ><span id="src-intersection-header">Mistrzejowice</span> -
+                  <span id="dest-intersection-header">Czyzyny</span></span
+                >
+                (<span id="distance-between">1.75</span>km)
+              </div>
+              <div class="card-body text-center">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-center">Amount of the vehicles:</h5>
+                    <h2 id="road-amount" class="text-center font-weight-bold">0</h2>
+                  </div>
+                  <div class="col">
+                    <h5 class="card-title text-center">Avg vehicle's velocity:</h5>
+                    <h2 id="road-avg" class="text-center font-weight-bold">0</h2>
+                  </div>
+                  <div class="col">
+                    <h5 class="card-title text-center">Another stats:</h5>
+                    <h2 id="" class="text-center font-weight-bold">0</h2>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="card-body">
-              <div class="row">
-                <div class="col">
-                  <label class="text-sm text-secondary" for="slider1">
-                    Mistrzejowice
-                    <span id="slider1-output">0.8</span>
-                  </label>
-                  <br />
-                  <input type="range" min="0" max="200" value="80" class="slider" id="slider1" />
-                </div>
-                <div class="col">
-                  <label class="text-sm text-secondary" for="slider2">
-                    Czyzyny
-                    <span id="slider2-output">0.8</span>
-                  </label>
-                  <br />
-                  <input type="range" min="0" max="200" value="80" class="slider" id="slider2" />
-                </div>
-                <div class="col">
-                  <label class="text-sm text-secondary" for="slider3">
-                    Dywizjonu 308
-                    <span id="slider3-output">0.8</span>
-                  </label>
-                  <br />
-                  <input type="range" min="0" max="200" value="80" class="slider" id="slider3" />
-                </div>
-                <div class="col">
-                  <label class="text-sm text-secondary" for="slider4">
-                    Leg
-                    <span id="slider4-output">0.8</span>
-                  </label>
-                  <br />
-                  <input type="range" min="0" max="200" value="80" class="slider" id="slider4" />
-                </div>
-                <div class="col">
-                  <label class="text-sm text-secondary" for="slider5">
-                    Plaszow
-                    <span id="slider5-output">0.8</span>
-                  </label>
-                  <br />
-                  <input type="range" min="0" max="200" value="80" class="slider" id="slider5" />
-                </div>
-                <div class="col">
-                  <label class="text-sm text-secondary" for="slider6">
-                    Bagry
-                    <span id="slider6-output">0.8</span>
-                  </label>
-                  <br />
-                  <input type="range" min="0" max="200" value="80" class="slider" id="slider6" />
-                </div>
-                <div class="col">
-                  <label class="text-sm text-secondary" for="slider7">
-                    Kabel
-                    <span id="slider7-output">0.8</span>
-                  </label>
-                  <br />
-                  <input type="range" min="0" max="200" value="80" class="slider" id="slider7" />
-                </div>
-                <div class="col">
-                  <label class="text-sm text-secondary" for="slider8">
-                    Lagiewniki
-                    <span id="slider8-output">0.8</span>
-                  </label>
-                  <br />
-                  <input type="range" min="0" max="200" value="80" class="slider" id="slider8" />
-                </div>
-                <div class="col">
-                  <label class="text-sm text-secondary" for="slider9">
-                    Solvay
-                    <span id="slider9-output">0.8</span>
-                  </label>
-                  <br />
-                  <input type="range" min="0" max="200" value="80" class="slider" id="slider9" />
-                </div>
-                <div class="col">
-                  <label class="text-sm text-secondary" for="slider10">
-                    Ruczaj
-                    <span id="slider10-output">0.8</span>
-                  </label>
-                  <br />
-                  <input type="range" min="0" max="200" value="80" class="slider" id="slider10" />
-                </div>
-                <div class="col">
-                  <label class="text-sm text-secondary" for="slider11">
-                    Przegorzaly
-                    <span id="slider11-output">0.8</span>
-                  </label>
-                  <br />
-                  <input type="range" min="0" max="200" value="80" class="slider" id="slider11" />
-                </div>
-                <div class="col">
-                  <label class="text-sm text-secondary" for="slider12">
-                    Zarzecze
-                    <span id="slider12-output">0.8</span>
-                  </label>
-                  <br />
-                  <input type="range" min="0" max="200" value="80" class="slider" id="slider12" />
-                </div>
-                <div class="col">
-                  <label class="text-sm text-secondary" for="slider13">
-                    Rondo Ofiar Katynia
-                    <span id="slider13-output">0.8</span>
-                  </label>
-                  <br />
-                  <input type="range" min="0" max="200" value="80" class="slider" id="slider13" />
-                </div>
-                <div class="col">
-                  <label class="text-sm text-secondary" for="slider14">
-                    Wolbromski
-                    <span id="slider14-output">0.8</span>
-                  </label>
-                  <br />
-                  <input type="range" min="0" max="200" value="80" class="slider" id="slider14" />
-                </div>
-                <div class="col">
-                  <label class="text-sm text-secondary" for="slider15">
-                    Imbramowski
-                    <span id="slider15-output">0.8</span>
-                  </label>
-                  <br />
-                  <input type="range" min="0" max="200" value="80" class="slider" id="slider15" />
-                </div>
-                <div class="col">
-                  <label class="text-sm text-secondary" for="slider16">
-                    Polsadu
-                    <span id="slider16-output">0.8</span>
-                  </label>
-                  <br />
-                  <input type="range" min="0" max="200" value="80" class="slider" id="slider16" />
+          </div>
+
+          <div class="col-12 col-md-12">
+            <div class="card bg-light mb-3">
+              <div class="card-header text-center">
+                <span class="font-weight-bold">Average inflow coefficient:</span>
+                <span id="avg-inflow">0.8</span>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <label class="text-sm text-secondary" for="slider1">
+                      Mistrzejowice
+                      <span id="slider1-output">0.8</span>
+                    </label>
+                    <br />
+                    <input type="range" min="0" max="200" value="80" class="slider" id="slider1" />
+                  </div>
+                  <div class="col">
+                    <label class="text-sm text-secondary" for="slider2">
+                      Czyzyny
+                      <span id="slider2-output">0.8</span>
+                    </label>
+                    <br />
+                    <input type="range" min="0" max="200" value="80" class="slider" id="slider2" />
+                  </div>
+                  <div class="col">
+                    <label class="text-sm text-secondary" for="slider3">
+                      Dywizjonu 308
+                      <span id="slider3-output">0.8</span>
+                    </label>
+                    <br />
+                    <input type="range" min="0" max="200" value="80" class="slider" id="slider3" />
+                  </div>
+                  <div class="col">
+                    <label class="text-sm text-secondary" for="slider4">
+                      Leg
+                      <span id="slider4-output">0.8</span>
+                    </label>
+                    <br />
+                    <input type="range" min="0" max="200" value="80" class="slider" id="slider4" />
+                  </div>
+                  <div class="col">
+                    <label class="text-sm text-secondary" for="slider5">
+                      Plaszow
+                      <span id="slider5-output">0.8</span>
+                    </label>
+                    <br />
+                    <input type="range" min="0" max="200" value="80" class="slider" id="slider5" />
+                  </div>
+                  <div class="col">
+                    <label class="text-sm text-secondary" for="slider6">
+                      Bagry
+                      <span id="slider6-output">0.8</span>
+                    </label>
+                    <br />
+                    <input type="range" min="0" max="200" value="80" class="slider" id="slider6" />
+                  </div>
+                  <div class="col">
+                    <label class="text-sm text-secondary" for="slider7">
+                      Kabel
+                      <span id="slider7-output">0.8</span>
+                    </label>
+                    <br />
+                    <input type="range" min="0" max="200" value="80" class="slider" id="slider7" />
+                  </div>
+                  <div class="col">
+                    <label class="text-sm text-secondary" for="slider8">
+                      Lagiewniki
+                      <span id="slider8-output">0.8</span>
+                    </label>
+                    <br />
+                    <input type="range" min="0" max="200" value="80" class="slider" id="slider8" />
+                  </div>
+                  <div class="col">
+                    <label class="text-sm text-secondary" for="slider9">
+                      Solvay
+                      <span id="slider9-output">0.8</span>
+                    </label>
+                    <br />
+                    <input type="range" min="0" max="200" value="80" class="slider" id="slider9" />
+                  </div>
+                  <div class="col">
+                    <label class="text-sm text-secondary" for="slider10">
+                      Ruczaj
+                      <span id="slider10-output">0.8</span>
+                    </label>
+                    <br />
+                    <input type="range" min="0" max="200" value="80" class="slider" id="slider10" />
+                  </div>
+                  <div class="col">
+                    <label class="text-sm text-secondary" for="slider11">
+                      Przegorzaly
+                      <span id="slider11-output">0.8</span>
+                    </label>
+                    <br />
+                    <input type="range" min="0" max="200" value="80" class="slider" id="slider11" />
+                  </div>
+                  <div class="col">
+                    <label class="text-sm text-secondary" for="slider12">
+                      Zarzecze
+                      <span id="slider12-output">0.8</span>
+                    </label>
+                    <br />
+                    <input type="range" min="0" max="200" value="80" class="slider" id="slider12" />
+                  </div>
+                  <div class="col">
+                    <label class="text-sm text-secondary" for="slider13">
+                      Rondo Ofiar Katynia
+                      <span id="slider13-output">0.8</span>
+                    </label>
+                    <br />
+                    <input type="range" min="0" max="200" value="80" class="slider" id="slider13" />
+                  </div>
+                  <div class="col">
+                    <label class="text-sm text-secondary" for="slider14">
+                      Wolbromski
+                      <span id="slider14-output">0.8</span>
+                    </label>
+                    <br />
+                    <input type="range" min="0" max="200" value="80" class="slider" id="slider14" />
+                  </div>
+                  <div class="col">
+                    <label class="text-sm text-secondary" for="slider15">
+                      Imbramowski
+                      <span id="slider15-output">0.8</span>
+                    </label>
+                    <br />
+                    <input type="range" min="0" max="200" value="80" class="slider" id="slider15" />
+                  </div>
+                  <div class="col">
+                    <label class="text-sm text-secondary" for="slider16">
+                      Polsadu
+                      <span id="slider16-output">0.8</span>
+                    </label>
+                    <br />
+                    <input type="range" min="0" max="200" value="80" class="slider" id="slider16" />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div style="display: flex; flex-direction: column; align-items: center;">
-      <!-- Road forward -->
-      <div style="display: flex; justify-content: center; align-items: center;">
-        <span id="dest-forward-left">Mistrzejowice</span>
-        <canvas id="canvas" width="1600" height="125" class="mt-2"></canvas>
-        <span id="dest-forward-right">Czyzyny</span>
-      </div>
-      <!-- Road backward -->
-      <div style="display: flex; justify-content: center; align-items: center;">
-        <span id="dest-backward-left">Czyzyny</span>
-        <canvas id="canvas-backward" width="1600" height="125" class="mt-2"></canvas>
-        <span id="dest-backward-right">Mistrzejowice</span>
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <!-- Road forward -->
+        <div style="display: flex; justify-content: center; align-items: center;">
+          <span id="dest-forward-left">Mistrzejowice</span>
+          <canvas id="canvas" width="1600" height="125" class="mt-2"></canvas>
+          <span id="dest-forward-right">Czyzyny</span>
+        </div>
+        <!-- Road backward -->
+        <div style="display: flex; justify-content: center; align-items: center;">
+          <span id="dest-backward-left">Czyzyny</span>
+          <canvas id="canvas-backward" width="1600" height="125" class="mt-2"></canvas>
+          <span id="dest-backward-right">Mistrzejowice</span>
+        </div>
       </div>
     </div>
     <script src="../src/index.js"></script>
