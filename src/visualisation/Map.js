@@ -48,6 +48,7 @@ const generateEdges = (intersectionPoints, roads) => {
     road.point_to = secondPoint;
 
     road.on('click', (e) => sim.setSelectedRoadId(e));
+    road.on('click', (e) => onRoadClick(e));
     roads.push(road);
   }
 
@@ -61,10 +62,11 @@ const generateEdges = (intersectionPoints, roads) => {
     ],
     { weight: 10 }
   ).addTo(map);
-  lastRoad.id = intersectionPoints.length - 1;
+  lastRoad.id = intersectionPoints.length;
   lastRoad.point_from = intersectionPoints[arrLength - 1];
   lastRoad.point_to = intersectionPoints[0];
   lastRoad.on('click', (e) => sim.setSelectedRoadId(e));
+  lastRoad.on('click', (e) => onRoadClick(e));
   roads.push(lastRoad);
 };
 
@@ -108,6 +110,29 @@ const generateIntersections = (intersectionPoints) => {
     point['marker'].on('mouseover', (e) => e.sourceTarget.togglePopup());
     point['marker'].bindPopup(`Name: ${point.name}`);
   });
+};
+
+const onRoadClick = (e) => {
+  const roadId = e.sourceTarget.id;
+  const destFwdL = document.getElementById('dest-forward-left');
+  const destFwdR = document.getElementById('dest-forward-right');
+  const destBwdL = document.getElementById('dest-backward-left');
+  const destBwdR = document.getElementById('dest-backward-right');
+
+  const fwdIntersection = sim.intersections.filter((intersection) => intersection.id === roadId)[0];
+  const bwdIntersection = sim.intersections.filter(
+    (intersection) => intersection.id === (roadId + 1) % sim.intersections.length
+  )[0];
+
+  // road forward
+
+  destFwdL.innerText = fwdIntersection.name;
+  destFwdR.innerText = bwdIntersection.name;
+
+  // road backward
+
+  destBwdL.innerText = bwdIntersection.name;
+  destBwdR.innerText = fwdIntersection.name;
 };
 
 /**
