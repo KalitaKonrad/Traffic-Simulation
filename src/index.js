@@ -4,6 +4,8 @@ import Simulation from './objects/Simulation';
 
 const CRACOW_LAT = 50.0647;
 const CRACOW_LNG = 19.945;
+export const GREEN = 'rgb(0, 255, 0)';
+export const RED = 'rgb(255, 0, 0)';
 
 export const map = L.map('map', {
   // doubleClickZoom: false,
@@ -51,3 +53,41 @@ for (let i = 1; i <= 16; i++) {
     CONTROLLER.changeIntersectionInflow(i, this.value);
   };
 }
+
+const addEventListenersToLights = () => {
+  const upperLight = document.getElementById('upper-light');
+  const lowerLight = document.getElementById('lower-light');
+
+  upperLight.style.backgroundColor = GREEN;
+  lowerLight.style.backgroundColor = GREEN;
+
+  const leftIntersection = document.getElementById('dest-forward-left');
+  const rightIntersection = document.getElementById('dest-forward-right');
+  const sim = CONTROLLER.simulation;
+
+  upperLight.addEventListener('click', (e) => changeLight(e, sim, leftIntersection.innerText));
+  lowerLight.addEventListener('click', (e) => changeLight(e, sim, rightIntersection.innerText));
+};
+
+const changeLight = function (event, sim, intersectionName) {
+  const selectedIntersection = sim.intersections.filter((intersection) => intersection.name === intersectionName)[0];
+
+  console.log(selectedIntersection);
+  switch (event.target.style.backgroundColor) {
+    case RED:
+      event.target.style.backgroundColor = GREEN;
+
+      selectedIntersection.userChangedLight = true;
+      console.log(`set ${selectedIntersection.name} to light: ${selectedIntersection.lights}`);
+      selectedIntersection.lights = 2;
+      break;
+
+    case GREEN:
+      event.target.style.backgroundColor = RED;
+      console.log(`set ${selectedIntersection.name} to light: ${selectedIntersection.lights}`);
+      selectedIntersection.userChangedLight = true;
+      selectedIntersection.lights = 1;
+  }
+};
+
+addEventListenersToLights();

@@ -6,3 +6,43 @@ canvas {
   height: 600px;
   width: 600px;
 }
+
+.wrapper {
+  position: relative;
+}
+
+.intersection-1,
+.intersection-2 {
+  position: absolute;
+  top: 50%;
+}
+
+.intersection-1 {
+  left: 0;
+  transform: translate(-100%, -50%);
+  padding-right: 1rem;
+}
+
+.intersection-2 {
+  right: 0;
+  transform: translate(100%, 50%);
+  padding-left: 1rem;
+}
+
+.light {
+  position: absolute;
+  height: 33px;
+  width: 33px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.lower-light {
+  right: 0;
+  transform: translate(170%, -50%);
+}
+
+.upper-light {
+  left: 0;
+  transform: translate(-170%, 400%);
+}

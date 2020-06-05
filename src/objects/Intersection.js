@@ -29,7 +29,8 @@ export default class Intersection {
     carsInput = 1.2,
     name = 'A Intersection',
     lights = 1,
-    lightsCounter = 10
+    lightsCounter = 10,
+    userChangedLight = false
   ) {
     this.id = id;
 
@@ -52,6 +53,7 @@ export default class Intersection {
 
     this.name = name;
     this.inflowCoefficient = 0;
+    this.userChangedLight = userChangedLight;
   }
 
   /**
@@ -143,10 +145,12 @@ export default class Intersection {
         this.vehiclesToProcess.splice(0, 1);
       }
     }
-    this.lightsCounter--;
-    if (this.lightsCounter <= 0) {
-      this.changeLights();
-      this.lightsCounter = this.lightsInit;
+    if (!this.userChangedLight) {
+      this.lightsCounter--;
+      if (this.lightsCounter <= 0) {
+        this.changeLights();
+        this.lightsCounter = this.lightsInit;
+      }
     }
   }
 

@@ -27,6 +27,7 @@
       integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
       crossorigin=""
     ></script>
+    <link rel="stylesheet" href="./css/style.css" type="text/css" />
   </head>
   <body>
     <div class="container mt-4 mb-2">
@@ -241,19 +242,24 @@
           </div>
         </div>
       </div>
-
-      <div style="display: flex; flex-direction: column; align-items: center;">
-        <!-- Road forward -->
-        <div style="display: flex; justify-content: center; align-items: center;">
-          <span id="dest-forward-left">Mistrzejowice</span>
+    </div>
+    <div class="d-flex flex-column justify-content-center">
+      <!-- Road forward -->
+      <div class="d-flex justify-content-center">
+        <div class="wrapper">
+          <div class="intersection-1" id="dest-forward-left">Mistrzejowice</div>
           <canvas id="canvas" width="1600" height="125" class="mt-2"></canvas>
-          <span id="dest-forward-right">Czyzyny</span>
+          <div id="upper-light" class="light upper-light"></div>
+          <div class="intersection-2" id="dest-forward-right">Czyzyny</div>
         </div>
-        <!-- Road backward -->
-        <div style="display: flex; justify-content: center; align-items: center;">
-          <span id="dest-backward-left">Czyzyny</span>
+      </div>
+      <!-- Road backward -->
+      <div class="d-flex justify-content-center">
+        <div class="wrapper">
+          <div class="intersection-2" id="dest-backward-left">Czyzyny</div>
           <canvas id="canvas-backward" width="1600" height="125" class="mt-2"></canvas>
-          <span id="dest-backward-right">Mistrzejowice</span>
+          <div id="lower-light" class="light lower-light"></div>
+          <div class="intersection-1" id="dest-backward-right">Mistrzejowice</div>
         </div>
       </div>
     </div>

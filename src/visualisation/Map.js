@@ -1,5 +1,6 @@
 import { map, CONTROLLER } from '../index';
 import { DISTANCES } from '../consts/intersections.const';
+import { GREEN, RED } from '../index';
 
 const sim = CONTROLLER.simulation;
 
@@ -50,6 +51,7 @@ const generateEdges = (intersectionPoints, roads) => {
 
     road.on('click', (e) => sim.setSelectedRoadId(e));
     road.on('click', (e) => onRoadClick(e));
+    road.on('click', (e) => updateLightsColors(e));
     roads.push(road);
   }
 
@@ -68,6 +70,7 @@ const generateEdges = (intersectionPoints, roads) => {
   lastRoad.point_to = intersectionPoints[0];
   lastRoad.on('click', (e) => sim.setSelectedRoadId(e));
   lastRoad.on('click', (e) => onRoadClick(e));
+  lastRoad.on('click', (e) => updateLightsColors(e));
   roads.push(lastRoad);
 };
 
@@ -148,6 +151,23 @@ const onRoadClick = (e) => {
   CONTROLLER.CURRENT_ROAD = roadId;
 };
 
+const updateLightsColors = (e) => {
+  const roadId = e.sourceTarget.id;
+  const fwdIntersection = sim.intersections.filter((intersection) => intersection.id === roadId)[0];
+  const bwdIntersection = sim.intersections.filter(
+    (intersection) => intersection.id === (roadId + 1) % sim.intersections.length
+  )[0];
+
+  document.getElementById('upper-light').style.backgroundColor = fwdIntersection.lights === 2 ? GREEN : RED;
+  document.getElementById('lower-light').style.backgroundColor = bwdIntersection.lights === 2 ? GREEN : RED;
+  // is roundabout
+  if (fwdIntersection.lights === 0) {
+    document.getElementById('upper-light').style.backgroundColor = GREEN;
+  }
+  if (bwdIntersection.lights === 0) {
+    document.getElementById('lower-light').style.backgroundColor = GREEN;
+  }
+};
 /**
  * Main function.
  */
