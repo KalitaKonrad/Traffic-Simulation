@@ -1,4 +1,4 @@
-# SDSZ-Obwodnica
+# Traffic-Simulation
 
 docs: https://github.com/KalitaKonrad/SDSZ-Obwodnica-lll/blob/docs/docs/Symulacja_ruchu_drogowego.pdf
 
@@ -10,7 +10,7 @@ Live demo: https://sobw.netlify.app/
 - [x] Budowa algorytmu i modelu matematycznego.
 - [x] Implementacja w języku JavaScript.
 - [x] Implementacja animacji.
-- [ ] Analiza i ocena poprawności wyników.
+- [x] Analiza i ocena poprawności wyników.
 
 ![ss1](./public/assets/ss1.png)
 
