@@ -50,8 +50,11 @@ const drawVehicles = (road, ctx, isForward) => {
 const visualize = () => {
   setInterval(sim.run.bind(sim), DRAW_INTERVAL);
   setInterval(() => {
-    const roadForward = sim.roads.filter((road) => road.id === 2 * sim.selectedRoadId)[0];
-    const roadBackward = sim.roads.filter((road) => road.id === 2 * sim.selectedRoadId - 1)[0];
+    const roadForward = sim.intersections.filter((intersection) => intersection.id === sim.selectedRoadId)[0]
+      .outSecondRoad;
+    const roadBackward = sim.intersections.filter((intersection) => intersection.id === sim.selectedRoadId)[0]
+      .inSecondRoad;
+
     drawVehicles(roadForward, ctx, true);
     drawVehicles(roadBackward, ctxSecond, false);
   }, DRAW_INTERVAL);

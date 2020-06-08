@@ -1,5 +1,5 @@
 import { map, CONTROLLER } from '../index';
-import { DISTANCES } from '../consts/intersections.const';
+import { DISTANCES, INTERSECTION_TYPES } from '../consts/intersections.const';
 import { GREEN, RED } from '../index';
 
 const sim = CONTROLLER.simulation;
@@ -127,25 +127,26 @@ const onRoadClick = (e) => {
   const destIntHeader = document.getElementById('dest-intersection-header');
   const distanceBetweenInts = document.getElementById('distance-between');
 
-  const fwdIntersection = sim.intersections.filter((intersection) => intersection.id === roadId)[0];
-  const bwdIntersection = sim.intersections.filter(
-    (intersection) => intersection.id === (roadId + 1) % sim.intersections.length
-  )[0];
+  const leftIntersection = sim.intersections.filter((intersection) => intersection.id === roadId)[0];
+  const rightIntersection =
+    roadId === sim.intersections.length
+      ? sim.intersections[0]
+      : sim.intersections.filter((intersection) => intersection.id === roadId + 1)[0];
 
-  // road forward
+  // road left -> right
 
-  destFwdL.innerText = fwdIntersection.name;
-  destFwdR.innerText = bwdIntersection.name;
+  destFwdL.innerText = leftIntersection.name;
+  destFwdR.innerText = rightIntersection.name;
 
-  // road backward
+  // road right -> left
 
-  destBwdL.innerText = bwdIntersection.name;
-  destBwdR.innerText = fwdIntersection.name;
+  destBwdL.innerText = leftIntersection.name;
+  destBwdR.innerText = rightIntersection.name;
 
   // roads stats header
 
-  srcIntHeader.innerHTML = fwdIntersection.name;
-  destIntHeader.innerHTML = bwdIntersection.name;
+  srcIntHeader.innerHTML = leftIntersection.name;
+  destIntHeader.innerHTML = rightIntersection.name;
   distanceBetweenInts.innerHTML = DISTANCES[roadId];
 
   CONTROLLER.CURRENT_ROAD = roadId;
@@ -158,14 +159,18 @@ const updateLightsColors = (e) => {
     (intersection) => intersection.id === (roadId + 1) % sim.intersections.length
   )[0];
 
-  document.getElementById('upper-light').style.backgroundColor = fwdIntersection.lights === 2 ? GREEN : RED;
-  document.getElementById('lower-light').style.backgroundColor = bwdIntersection.lights === 2 ? GREEN : RED;
+  document.getElementById('left-light').style.backgroundColor =
+    fwdIntersection.lights === INTERSECTION_TYPES.GREEN_LIGHT ? GREEN : RED;
+
+  document.getElementById('right-light').style.backgroundColor =
+    bwdIntersection.lights === INTERSECTION_TYPES.GREEN_LIGHT ? GREEN : RED;
+
   // is roundabout
-  if (fwdIntersection.lights === 0) {
-    document.getElementById('upper-light').style.backgroundColor = GREEN;
+  if (fwdIntersection.lights === INTERSECTION_TYPES.ROUNDABOUT) {
+    document.getElementById('left-light').style.backgroundColor = GREEN;
   }
-  if (bwdIntersection.lights === 0) {
-    document.getElementById('lower-light').style.backgroundColor = GREEN;
+  if (bwdIntersection.lights === INTERSECTION_TYPES.ROUNDABOUT) {
+    document.getElementById('right-light').style.backgroundColor = GREEN;
   }
 };
 /**

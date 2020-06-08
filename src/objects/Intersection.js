@@ -17,6 +17,7 @@ export default class Intersection {
    * @param {String} name                   - Name of the intersection
    * @param {number} lights                 - 0- roundabout, 1 - red light, 2 - green light
    * @param {int} lightsCounter
+   * @param userChangedLight                - boolean, true if user changed lights manually
    */
   constructor(
     id = 0,
@@ -84,6 +85,20 @@ export default class Intersection {
   changeLights() {
     if (this.lights === INTERSECTION_TYPES.RED_LIGHT) this.lights = INTERSECTION_TYPES.GREEN_LIGHT;
     else if (this.lights === INTERSECTION_TYPES.GREEN_LIGHT) this.lights = INTERSECTION_TYPES.RED_LIGHT;
+    const leftIntersection = document.getElementById('dest-forward-left');
+    const rightIntersection = document.getElementById('dest-forward-right');
+
+    if (leftIntersection.innerText === this.name) {
+      const leftLight = document.getElementById('left-light');
+      leftLight.style.backgroundColor =
+        this.lights === INTERSECTION_TYPES.GREEN_LIGHT ? 'rgb(0, 255, 0)' : 'rgb(255, 0, 0)';
+    }
+
+    if (rightIntersection.innerText === this.name) {
+      const rightLight = document.getElementById('right-light');
+      rightLight.style.backgroundColor =
+        this.lights === INTERSECTION_TYPES.GREEN_LIGHT ? 'rgb(0, 255, 0)' : 'rgb(255, 0, 0)';
+    }
   }
 
   /**

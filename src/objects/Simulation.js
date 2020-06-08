@@ -382,6 +382,7 @@ export default class Simulation {
    * @param intersectionId
    */
   addVehicleToIntersection(intersectionId) {
+    intersectionId--; // fix indexing
     let destinationId = Math.floor(Math.random() * NUM_OF_INTERSECTIONS);
     let maxVelo = this.getRandomVelocity();
     let velocity = Math.floor(Math.random() * maxVelo);
@@ -505,15 +506,8 @@ export default class Simulation {
   }
 
   getAmoutOfVehiclesOnRoad(roadId) {
-    let ids = [];
-    if (roadId === 16) {
-      ids.push(0, 1);
-    } else {
-      ids.push(roadId * 2, roadId * 2 + 1);
-    }
-
-    let roadA = this.roads[ids[0]];
-    let roadB = this.roads[ids[1]];
+    let roadA = this.roads[roadId === 16 ? 0 : 2 * roadId];
+    let roadB = this.roads[roadId === 16 ? 1 : 2 * roadId + 1];
 
     let result = 0;
     result += roadA.vehicles.length;
@@ -523,15 +517,8 @@ export default class Simulation {
   }
 
   getAvgVelocityOnRoad(roadId) {
-    let ids = [];
-    if (roadId === 16) {
-      ids.push(0, 1);
-    } else {
-      ids.push(roadId * 2, roadId * 2 + 1);
-    }
-
-    let roadA = this.roads[ids[0]];
-    let roadB = this.roads[ids[1]];
+    let roadA = this.roads[roadId === 16 ? 0 : 2 * roadId];
+    let roadB = this.roads[roadId === 16 ? 1 : 2 * roadId + 1];
 
     let result = 0;
     roadA.vehicles.forEach((vehicle) => {

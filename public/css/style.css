@@ -37,12 +37,12 @@ canvas {
   display: inline-block;
 }
 
-.lower-light {
+.right-light {
   right: 0;
   transform: translate(170%, -50%);
 }
 
-.upper-light {
+.left-light {
   left: 0;
   transform: translate(-170%, 400%);
 }

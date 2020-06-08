@@ -1,5 +1,6 @@
 import MainController from './controllers/MainController';
 import Simulation from './objects/Simulation';
+import { INTERSECTION_TYPES } from './consts/intersections.const';
 ///////////////////// Leaflet map - visualization /////////////////////
 
 const CRACOW_LAT = 50.0647;
@@ -55,38 +56,44 @@ for (let i = 1; i <= 16; i++) {
 }
 
 const addEventListenersToLights = () => {
-  const upperLight = document.getElementById('upper-light');
-  const lowerLight = document.getElementById('lower-light');
-
-  upperLight.style.backgroundColor = GREEN;
-  lowerLight.style.backgroundColor = GREEN;
+  const leftLight = document.getElementById('left-light');
+  const rightLight = document.getElementById('right-light');
 
   const leftIntersection = document.getElementById('dest-forward-left');
   const rightIntersection = document.getElementById('dest-forward-right');
   const sim = CONTROLLER.simulation;
 
-  upperLight.addEventListener('click', (e) => changeLight(e, sim, leftIntersection.innerText));
-  lowerLight.addEventListener('click', (e) => changeLight(e, sim, rightIntersection.innerText));
+  // set left light color
+  leftLight.style.backgroundColor =
+    sim.intersections.filter((intersection) => intersection.name === leftIntersection.innerText)[0].lights === 1
+      ? RED
+      : GREEN;
+
+  // set right light color
+  rightLight.style.backgroundColor =
+    sim.intersections.filter((intersection) => intersection.name === rightIntersection.innerText)[0].lights === 1
+      ? RED
+      : GREEN;
+
+  leftLight.addEventListener('click', (e) => changeLight(e, sim, leftIntersection.innerText));
+  rightLight.addEventListener('click', (e) => changeLight(e, sim, rightIntersection.innerText));
 };
 
 const changeLight = function (event, sim, intersectionName) {
   const selectedIntersection = sim.intersections.filter((intersection) => intersection.name === intersectionName)[0];
 
-  console.log(selectedIntersection);
-  switch (event.target.style.backgroundColor) {
-    case RED:
+  switch (selectedIntersection.lights) {
+    case INTERSECTION_TYPES.RED_LIGHT: // red light is set
       event.target.style.backgroundColor = GREEN;
 
       selectedIntersection.userChangedLight = true;
-      console.log(`set ${selectedIntersection.name} to light: ${selectedIntersection.lights}`);
-      selectedIntersection.lights = 2;
+      selectedIntersection.lights = INTERSECTION_TYPES.GREEN_LIGHT; // set to red
       break;
 
-    case GREEN:
+    case INTERSECTION_TYPES.GREEN_LIGHT: // green lights is set
       event.target.style.backgroundColor = RED;
-      console.log(`set ${selectedIntersection.name} to light: ${selectedIntersection.lights}`);
       selectedIntersection.userChangedLight = true;
-      selectedIntersection.lights = 1;
+      selectedIntersection.lights = INTERSECTION_TYPES.RED_LIGHT;
   }
 };
 
