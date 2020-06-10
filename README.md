@@ -3,14 +3,14 @@
 docs: https://github.com/KalitaKonrad/SDSZ-Obwodnica-lll/blob/docs/docs/Symulacja_ruchu_drogowego.pdf
 
 Live demo: https://sobw.netlify.app/
-## Plan projektu:
+## Project goals:
 
-- [x] Sformułowanie problemu.
-- [x] Analiza dostępnych rozwiązań.
-- [x] Budowa algorytmu i modelu matematycznego.
-- [x] Implementacja w języku JavaScript.
-- [x] Implementacja animacji.
-- [x] Analiza i ocena poprawności wyników.
+- [x] Define problem.
+- [x] Analysis of possible solutions.
+- [x] Defining algorithms and mathematical model.
+- [x] JavaScript implementation.
+- [x] Animation implementation.
+- [x] Analysis and evaluation of results.
 
 ![ss1](./public/assets/ss1.png)
 
